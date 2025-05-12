@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="oop2_ex04"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\cmake\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\opt\;CMake Files\..\..\..\..\..\opt\homebrew\;CMake Files\..\..\..\..\..\opt\homebrew\Cellar\;CMake Files\..\..\..\..\..\opt\homebrew\Cellar\sfml@2\;CMake Files\..\..\..\..\..\opt\homebrew\Cellar\sfml@2\2.6.2_1\;CMake Files\..\..\..\..\..\opt\homebrew\Cellar\sfml@2\2.6.2_1\lib\;CMake Files\..\..\..\..\..\opt\homebrew\Cellar\sfml@2\2.6.2_1\lib\cmake\;CMake Files\..\..\..\..\..\opt\homebrew\Cellar\sfml@2\2.6.2_1\lib\cmake\SFML\;CMake Files\include\;CMake Files\src\;CMake Files\resources\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="oop2_ex04">
+				<Option output="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/oop2_ex04" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/include"/>
+					<Add directory="/opt/homebrew/Cellar/sfml@2/2.6.2_1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/17/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 oop2_ex04"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="oop2_ex04/fast">
+				<Option output="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/oop2_ex04" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/include"/>
+					<Add directory="/opt/homebrew/Cellar/sfml@2/2.6.2_1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/17/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 oop2_ex04/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Zip">
+				<Option working_dir="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 Zip"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="ZipBackup">
+				<Option working_dir="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 ZipBackup"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="package">
+				<Option working_dir="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 package"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="package_source">
+				<Option working_dir="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 package_source"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/include/Board.h">
+			<Option target="oop2_ex04"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/include/Enemy.h">
+			<Option target="oop2_ex04"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/include/FileParser.h">
+			<Option target="oop2_ex04"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/include/FloodFill.h">
+			<Option target="oop2_ex04"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/include/GameController.h">
+			<Option target="oop2_ex04"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/include/Hud.h">
+			<Option target="oop2_ex04"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/include/Player.h">
+			<Option target="oop2_ex04"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/include/WindowManager.h">
+			<Option target="oop2_ex04"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/src/Board.cpp">
+			<Option target="oop2_ex04"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/src/Enemy.cpp">
+			<Option target="oop2_ex04"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/src/FileParser.cpp">
+			<Option target="oop2_ex04"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/src/FloodFill.cpp">
+			<Option target="oop2_ex04"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/src/GameController.cpp">
+			<Option target="oop2_ex04"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/src/Hud.cpp">
+			<Option target="oop2_ex04"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/src/Player.cpp">
+			<Option target="oop2_ex04"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/src/WindowManager.cpp">
+			<Option target="oop2_ex04"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake/CompilerSettings.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake/SFML.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/cmake/Zip.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/../../../../../opt/homebrew/Cellar/sfml@2/2.6.2_1/lib/cmake/SFML/SFMLConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opt\homebrew\Cellar\sfml@2\2.6.2_1\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/../../../../../opt/homebrew/Cellar/sfml@2/2.6.2_1/lib/cmake/SFML/SFMLConfigDependencies.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opt\homebrew\Cellar\sfml@2\2.6.2_1\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/../../../../../opt/homebrew/Cellar/sfml@2/2.6.2_1/lib/cmake/SFML/SFMLConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opt\homebrew\Cellar\sfml@2\2.6.2_1\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/../../../../../opt/homebrew/Cellar/sfml@2/2.6.2_1/lib/cmake/SFML/SFMLSharedTargets-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opt\homebrew\Cellar\sfml@2\2.6.2_1\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/../../../../../opt/homebrew/Cellar/sfml@2/2.6.2_1/lib/cmake/SFML/SFMLSharedTargets.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\..\opt\homebrew\Cellar\sfml@2\2.6.2_1\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/include/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\include\"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\"/>
+		</Unit>
+		<Unit filename="/Users/adamsimonov/לימודים/OOP2/oop2-ex04/resources/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\resources\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
