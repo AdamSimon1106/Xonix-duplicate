@@ -5,6 +5,14 @@ cmake_policy(SET CMP0009 NEW)
 # MY_HEADER_FILES at include/CMakeLists.txt:2 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES false RELATIVE "/Users/adamsimonov/לימודים/OOP2/oop2_ex04 - adam_simonov-benny_beer/include" "/Users/adamsimonov/לימודים/OOP2/oop2_ex04 - adam_simonov-benny_beer/include/*.h")
 set(OLD_GLOB
+  "Board.h"
+  "Enemy.h"
+  "FileParser.h"
+  "FloodFill.h"
+  "GameController.h"
+  "Hud.h"
+  "Player.h"
+  "WindowManager.h"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")

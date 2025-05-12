@@ -5,7 +5,23 @@ set (MY_AUTHORS "YOUR-NAME-HERE")
 
 include (cmake/CompilerSettings.cmake)
 
-add_executable (${CMAKE_PROJECT_NAME})
+add_executable (${CMAKE_PROJECT_NAME}
+        src/Board.cpp
+        include/Board.h
+        src/FloodFill.cpp
+        include/FloodFill.h
+        src/FileParser.cpp
+        include/FileParser.h
+        src/GameController.cpp
+        include/GameController.h
+        src/Player.cpp
+        include/Player.h
+        src/Enemy.cpp
+        include/Enemy.h
+        src/Hud.cpp
+        include/Hud.h
+        src/WindowManager.cpp
+        include/WindowManager.h)
 
 target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE $<$<CONFIG:DEBUG>:-fsanitize=address>)
 if (NOT MSVC)

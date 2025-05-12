@@ -1,17 +1,5 @@
 /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -G Ninja -S "/Users/adamsimonov/לימודים/OOP2/oop2_ex04 - adam_simonov-benny_beer" -B "/Users/adamsimonov/לימודים/OOP2/oop2_ex04 - adam_simonov-benny_beer/cmake-build-debug"
--- The C compiler identification is AppleClang 17.0.0.17000013
--- The CXX compiler identification is AppleClang 17.0.0.17000013
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: /Library/Developer/CommandLineTools/usr/bin/cc - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: /Library/Developer/CommandLineTools/usr/bin/c++ - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
-CMake Error at CMakeLists.txt:24 (find_package):
+CMake Error at CMakeLists.txt:40 (find_package):
   By not providing "FindSFML.cmake" in CMAKE_MODULE_PATH this project has
   asked CMake to find a package configuration file provided by "SFML", but
   CMake did not find one.
