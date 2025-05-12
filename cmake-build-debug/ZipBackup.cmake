@@ -1,0 +1,5 @@
+string (TIMESTAMP MY_TIMESTAMP "%Y-%m-%d-%H-%M-%S")
+execute_process (COMMAND /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake --build "/Users/adamsimonov/לימודים/OOP2/oop2_ex04 - adam_simonov-benny_beer/cmake-build-debug" --target package_source)
+execute_process (COMMAND /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -E copy "/Users/adamsimonov/לימודים/OOP2/oop2_ex04 - adam_simonov-benny_beer/cmake-build-debug/oop2_ex04-YOUR-NAME-HERE.zip" "/Users/adamsimonov/לימודים/OOP2/oop2_ex04-YOUR-NAME-HERE-${MY_TIMESTAMP}.zip")
+execute_process (COMMAND /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -E echo "")
+execute_process (COMMAND /Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -E echo "***" /Users/adamsimonov/לימודים/OOP2/oop2_ex04-YOUR-NAME-HERE-${MY_TIMESTAMP}.zip "file created ***")
