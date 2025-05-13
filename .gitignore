@@ -1,0 +1,33 @@
+.vs/ 
+# Visual Studio
+.vs/
+*.vcxproj.*
+*.sln
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+out/
+
+# Ninja
+.ninja*
+build.ninja
+
+# Executables and binaries
+*.exe
+*.dll
+*.pdb
+*.obj
+*.ipch
+*.db
+
+# Backup files
+*.log
+*.idx
+*.json
+*.yaml
+
+# IDE metadata
+*.VC.db
