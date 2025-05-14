@@ -6,7 +6,7 @@ WindowManager::WindowManager(const std::string& title, int width, int height)
 	:m_window(sf::VideoMode(width, height), title), m_player(sf::Vector2i(0, 0), 3)
 {
 	int spacing = 150;
-	for (int i = 0; i < 3; ++i) {
+	for (int i = 0; i < 5; ++i) {
 		auto enemy = Enemy(sf::Vector2i(i*spacing, i*spacing));
 		m_enemies.push_back(enemy);
 	}
