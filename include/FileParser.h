@@ -15,6 +15,7 @@ struct LevelData{
 	std::vector<Enemy> enemies;
 	void generatePositions(const int& count);
 	void addEnemy(const int& x, const int& y);
+	std::string toString();
 };
 struct GameData {
 	int numOfLives;

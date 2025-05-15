@@ -6,6 +6,7 @@ set (MY_AUTHORS "Adam_Simonov-Benny_Beer")
 include (cmake/CompilerSettings.cmake)
 
 add_executable (${CMAKE_PROJECT_NAME}
+        src/main.cpp
         src/Board.cpp
         include/Board.h
         src/FloodFill.cpp
@@ -22,6 +23,8 @@ add_executable (${CMAKE_PROJECT_NAME}
         include/Hud.h
         src/WindowManager.cpp
         include/WindowManager.h)
+        # Copy the entire resources/ folder into the build directory
+file(COPY resources DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE $<$<CONFIG:DEBUG>:-fsanitize=address>)
 if (NOT MSVC)
