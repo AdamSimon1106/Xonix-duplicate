@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Player.h"
 #include "Enemy.h"
+#include "Trail.h"
 
 
 class WindowManager {
@@ -16,6 +17,7 @@ public:
 	
 
 private:
+	Trail m_trail;
 	Player m_player;
 	std::vector<Enemy> m_enemies;
 	sf::RenderWindow m_window;

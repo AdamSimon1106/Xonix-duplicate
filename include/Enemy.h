@@ -13,12 +13,5 @@ public:
 	void InWindow(sf::Vector2f& newPosition);
 	void setDirection();
 private:
-	/*sf::Vector2i m_startPosition;
-	sf::Vector2f m_position;
-
-	sf::Vector2i m_direction;
-	float m_speed = 100.0f;
-
-	sf::Sprite m_sprite;
-	sf::Texture m_texture;*/
+	
 };
