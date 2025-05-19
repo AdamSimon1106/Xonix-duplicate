@@ -8,7 +8,9 @@ WindowManager::WindowManager(const std::string& title, int width, int height)
 {
 	int spacing = 150;
 	for (int i = 0; i < 5; ++i) {
-		auto enemy = Enemy(sf::Vector2i(i*spacing + 30, i*spacing));
+		int x = std::rand() % WINDOW_WIDTH;
+		int y = std::rand() % WINDOW_HEIGHT;
+		auto enemy = Enemy(sf::Vector2i(x, y));
 		m_enemies.push_back(enemy);
 	}
 }
@@ -35,7 +37,14 @@ void WindowManager::processEvents()
 void WindowManager::update()
 {
 	sf::Time deltaTime = m_clock.restart();
-	
+	/*if (m_player.checkCollisionWithTrail(m_trail))
+	{
+		std::cout << "player collide\n";
+	}*/
+	if (m_player.checkCollisionWithTraill(m_trail))
+	{
+		std::cout << "player collide\n";
+	}
 	m_player.update(deltaTime);
 	
 	m_trail.updatePath(m_player.getPoint());

@@ -63,6 +63,11 @@ const int Player::getLive() const
 	return m_lives;
 }
 
+bool Player::checkCollisionWithTraill(const Trail& trail)
+{
+	return trail.collideWithObj(m_position);
+}
+
 
 
 

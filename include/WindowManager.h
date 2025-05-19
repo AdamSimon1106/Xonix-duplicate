@@ -6,6 +6,7 @@
 #include "Enemy.h"
 #include "Trail.h"
 #include "Hud.h"
+#include <iostream>
 
 
 class WindowManager {

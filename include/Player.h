@@ -17,6 +17,8 @@ public:
 	const int  getScore() const ;
 	const int getLive() const ;
 
+	bool checkCollisionWithTraill(const Trail& trail);
+
 private:
 	void handleInput();
 	
