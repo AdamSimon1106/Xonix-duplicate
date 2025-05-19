@@ -14,11 +14,13 @@ public:
 	void update(const sf::Time& deltaTime);
 	void InWindow(sf::Vector2f& newPosition);
 	
+	const int  getScore() const ;
+	const int getLive() const ;
 
 private:
 	void handleInput();
 	
-	bool m_iscolide = false;
 	int m_lives;
+	int m_score;
 	
 };

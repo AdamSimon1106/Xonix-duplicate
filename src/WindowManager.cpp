@@ -37,10 +37,7 @@ void WindowManager::update()
 	sf::Time deltaTime = m_clock.restart();
 	
 	m_player.update(deltaTime);
-	/*if (m_player.checkCollisionWithTrail(m_trail))
-	{
-		m_player.setPosition(m_player.getStartPos());
-	}*/
+	
 	m_trail.updatePath(m_player.getPoint());
 	for (auto& enemy : m_enemies) {
 		if (enemy.checkCollisionWithTrail(m_trail))
@@ -50,15 +47,25 @@ void WindowManager::update()
 		}
 		enemy.update(deltaTime);
 	}
+	HUDdata barData = {
+		m_player.getScore(),
+		m_player.getLive(),
+		0,
+		0.
+
+	};
+	m_bar.update(barData);
 }
 
 void WindowManager::render()
 {
 	m_window.clear();
+	
 	m_player.draw(m_window);
 	m_trail.draw(m_window);
 	for (const auto& enemy : m_enemies) {
 		enemy.draw(m_window);
 	}
+	m_bar.draw(m_window);
 	m_window.display();
 }

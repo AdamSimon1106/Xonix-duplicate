@@ -3,7 +3,7 @@
 #include "Player.h"
 
 Player::Player(const sf::Vector2i& startPosition, int lives)
-	:MovingObject(startPosition) , m_lives(lives)
+	:MovingObject(startPosition) , m_lives(lives), m_score(0)
 {
 	setTextur(sf::Color(128, 0, 128));
     
@@ -33,16 +33,6 @@ void Player::update(const sf::Time& deltaTime)
 	
 	m_sprite.setPosition(m_position);
 
-	// Update the path
-	/*if (m_direction != sf::Vector2f(0, 0)) {
-		m_trail.updatePath(m_position);
-	}*/
-	/*if (checkCollisionWithTral())
-	{
-		m_position = m_startPosition;
-		m_trail.clearPath();
-	}*/
-
 }
 
 void Player::InWindow(sf::Vector2f& newPosition)
@@ -55,12 +45,22 @@ void Player::InWindow(sf::Vector2f& newPosition)
 	if (newPosition.y < 0) {
 		newPosition.y = 0;
 	}
-	if (newPosition.x + bounds.width > WINDOW_WIDTH) { // Assuming window width is 800
+	if (newPosition.x + bounds.width > WINDOW_WIDTH) { 
 		newPosition.x = WINDOW_WIDTH - bounds.width;
 	}
-	if (newPosition.y + bounds.height > WINDOW_HEIGHT) { // Assuming window height is 600
+	if (newPosition.y + bounds.height > WINDOW_HEIGHT) {
 		newPosition.y = WINDOW_HEIGHT - bounds.height;
 	}
+}
+
+const int Player::getScore() const
+{
+	return m_score;
+}
+
+const int Player::getLive() const
+{
+	return m_lives;
 }
 
 
