@@ -22,7 +22,9 @@ add_executable (${CMAKE_PROJECT_NAME}
         src/Hud.cpp
         include/Hud.h
         src/WindowManager.cpp
-        include/WindowManager.h)
+        include/WindowManager.h
+        include/Tile.h)
+
         # Copy the entire resources/ folder into the build directory
 file(COPY resources DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
