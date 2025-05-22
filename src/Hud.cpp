@@ -15,9 +15,9 @@ HUD::HUD() {
     setupText(m_scoreText, 180);
     setupText(m_livesText, 290);
     setupText(m_timerText, 400);
-    setupText(m_areaText, 510);
+    setupText(m_areaText, 530);
 
-    m_border.setSize(sf::Vector2f(480, 30));
+    m_border.setSize(sf::Vector2f(510, 30));
     m_border.setPosition(150, 10);
     m_border.setFillColor(sf::Color(0, 0, 0, 150));
     m_border.setOutlineColor(sf::Color::White);
@@ -28,12 +28,17 @@ void HUD::update(const HUDdata& data) {
     m_scoreText.setString("Score: " + std::to_string(data.score));
     m_livesText.setString("Lives: " + std::to_string(data.live));
 
+    int totalSeconds = static_cast<int>(data.timer);
+    int minutes = totalSeconds / 60;
+    int seconds = totalSeconds % 60;
+
     std::ostringstream oss;
-    oss << std::fixed << std::setprecision(1) << data.timer;
-    m_timerText.setString("Time: " + oss.str());
+    oss << "Time: " << minutes << ":" << std::setw(2) << std::setfill('0') << seconds;
+    m_timerText.setString(oss.str());
 
     m_areaText.setString("Area: " + std::to_string(static_cast<int>(data.percentage)) + "%");
 }
+
 
 void HUD::draw(sf::RenderWindow& window) {
     window.draw(m_border);

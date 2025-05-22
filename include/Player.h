@@ -10,19 +10,23 @@
 class Player : public MovingObject{
 public:
 	Player(const sf::Vector2i& startPosition,int lives);
-	void draw(sf::RenderWindow& window) const;
 	void update(const sf::Time& deltaTime);
 	void InWindow(sf::Vector2f& newPosition);
+	
 	
 	const int  getScore() const ;
 	const int getLive() const ;
 
-	bool checkCollisionWithTraill(const Trail& trail);
-
+	
+	sf::Vector2f getOldPosition() const;
+	void setCollide(bool collide);
 private:
+	
 	void handleInput();
+	sf::Vector2f m_oldPosition;
 	
 	int m_lives;
 	int m_score;
+	
 	
 };

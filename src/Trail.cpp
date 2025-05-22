@@ -2,70 +2,86 @@
 #include <iostream>
 
 Trail::Trail(int size)
-	:trailShape(sf::Vector2f(size, size))
 {
-	trailShape.setFillColor(sf::Color(200, 0, 200, 150));
 }
 
 void Trail::updatePath(sf::Vector2f point)
 {
-	for (auto it = m_path.begin(); it != m_path.end(); it++)
+	if (m_collide == true)
 	{
-		if (*it == point)
+		m_path.clear();
+		m_collide = false;
+	}
+	if (!m_path.empty()) {
+		const sf::Vector2f& lastPos = m_path.back().getPosition();
+
+		if (distance(lastPos, point) < CELL_SIZE -1) 
 		{
 			return;
 		}
 			
 	}
+
+	sf::RectangleShape square;
 	
-	std::cout << point.x << ' ' << point.y << '\n';
-	m_path.push_back(point);
+
+	square.setSize({ CELL_SIZE, CELL_SIZE });
+
+	square.setPosition(point);
+	square.setFillColor(sf::Color::Magenta); 
+	m_path.push_back(square);
+
+	
 }
 
 void Trail::draw(sf::RenderWindow& window) const
 {
 	for (const auto& point : m_path)
 	{
-		trailShape.setPosition(point);
-		window.draw(trailShape);
+		
+		window.draw(point);
 	}
 }
 
-
-bool Trail::colideWithObject(const sf::FloatRect& playerBounds)
+bool Trail::checkColistions(const sf::RectangleShape& objBounde)
 {
-	if (m_path.size() < 1) 
-		return false;
-
-	for (auto it = m_path.begin(); it != m_path.end(); ++it)
-	{
-		sf::FloatRect trailRect(*it, trailShape.getSize());
-		if (trailRect.intersects(playerBounds))
-			return true;
-	}
-	return false;
-}
-
-bool Trail::collideWithObj(sf::Vector2f objPos) const {
 	if (m_path.size() < 1)
 		return false;
+	sf::FloatRect intersection;
 	for (auto it = m_path.begin(); it != m_path.end() - 1; ++it)
 	{
-		
-		if (*it == objPos)
+		if (it->getGlobalBounds().intersects(objBounde.getGlobalBounds(), intersection))
 		{
-			std::cout << it->x << " " << it->y << " " << objPos.x << " " << objPos.y << '\n';
-			return true;
-		}
 			
+			// תנאי: רק אם השטח מספיק משמעותי
+			if (intersection.height > 1 && intersection.width >1)
+			{
+				std::cout << "colide at" << it->getPosition().x << " " << it->getPosition().y << "\n";
+				std::cout << objBounde.getPosition().x << " " << objBounde.getPosition().y << "\n";
+
+				handlecolisions();
+				return true;
+			}
+		}
 	}
 	return false;
-
 }
 
-void Trail::clearPath()
+
+
+void Trail::handlecolisions()
 {
-	m_path.clear();
+	m_collide = true;
 }
+
+const float Trail::distance(const sf::Vector2f x1, const sf::Vector2f x2) const
+{
+	float dx = abs(x1.x - x2.x);
+	float dy = abs(x1.y - x2.y);
+	return dx > dy ? dx : dy;
+}
+
+
+
 
 

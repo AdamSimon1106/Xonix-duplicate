@@ -25,6 +25,7 @@ private:
 	std::vector<Enemy> m_enemies;
 	sf::RenderWindow m_window;
 	sf::Clock m_clock;
+	float m_countDown = 180.f;
 	
 
 
