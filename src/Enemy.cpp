@@ -2,6 +2,7 @@
 
 #include "Enemy.h"
 
+
 Enemy::Enemy(const sf::Vector2i& startPosition)
 	: MovingObject(startPosition)
 {
@@ -59,9 +60,9 @@ void Enemy::setDirection()
 {
 	int randomDirection = rand() % 4;
 	switch (randomDirection) {
-	case 0: m_direction = sf::Vector2i(1, 1); break; // Right
-	case 1: m_direction = sf::Vector2i(-1, 1); break; // Left
-	case 2: m_direction = sf::Vector2i(-1, -1); break; // Down
-	case 3: m_direction = sf::Vector2i(1, -1); break; // Up
+	case 0: m_direction = sf::Vector2f(1, 1); break; // Right
+	case 1: m_direction = sf::Vector2f(-1, 1); break; // Left
+	case 2: m_direction = sf::Vector2f(-1, -1); break; // Down
+	case 3: m_direction = sf::Vector2f(1, -1); break; // Up
 	}
 }

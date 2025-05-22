@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Macros.h"
+#include "Trail.h"
+
 //abstract class MovingObject <-- enemy, player;
 
 class MovingObject {
@@ -10,13 +12,17 @@ public:
 	virtual void draw(sf::RenderWindow& window) const = 0;
 	virtual void update(const sf::Time& deltaTime) = 0;
 	virtual void InWindow(sf::Vector2f& newPosition) = 0;
+	bool checkCollisionWithTrail(Trail& trail);
+	sf::Vector2f getPoint();
+	void setPosition(sf::Vector2f pos);
+	sf::Vector2f getStartPos();
 
 
 	void setTextur(sf::Color color);
 protected:
-	sf::Vector2i m_startPosition;
+	sf::Vector2f m_startPosition;
 	sf::Vector2f m_position;
-	sf::Vector2i m_direction;
+	sf::Vector2f m_direction;
 
 	sf::Sprite m_sprite;
 	sf::Texture m_texture;

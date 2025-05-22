@@ -4,6 +4,9 @@
 #include <SFML/Graphics.hpp>
 #include "Player.h"
 #include "Enemy.h"
+#include "Trail.h"
+#include "Hud.h"
+#include <iostream>
 
 
 class WindowManager {
@@ -16,6 +19,8 @@ public:
 	
 
 private:
+	HUD m_bar;
+	Trail m_trail;
 	Player m_player;
 	std::vector<Enemy> m_enemies;
 	sf::RenderWindow m_window;

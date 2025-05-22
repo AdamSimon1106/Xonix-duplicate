@@ -5,6 +5,27 @@ MovingObject::MovingObject(const sf::Vector2i& startPosition)
 	
 }
 
+bool MovingObject::checkCollisionWithTrail(Trail& trail)
+{
+    sf::FloatRect playerBounds = m_sprite.getGlobalBounds();
+    return trail.colideWithObject(playerBounds);
+}
+
+sf::Vector2f MovingObject::getPoint()
+{
+    return m_position;
+}
+
+void MovingObject::setPosition(sf::Vector2f pos)
+{
+    m_position = pos;
+}
+
+sf::Vector2f MovingObject::getStartPos()
+{
+    return m_startPosition;
+}
+
 void MovingObject::setTextur(sf::Color color)
 {
     sf::Image image;
