@@ -15,6 +15,7 @@ private:
 
 public:
 	GameController();
+	void processEvents();
 	void loadLevel();
 	void render();
 	void run();

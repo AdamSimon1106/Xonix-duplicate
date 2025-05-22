@@ -26,5 +26,17 @@ void GameController::render()
 }
 void GameController::run()
 {
-	render();
+	while (m_window.isOpen()) {
+		processEvents();
+		render();
+	}
+}
+void GameController::processEvents()
+{
+	sf::Event event;
+	while (m_window.pollEvent(event)) {
+		if (event.type == sf::Event::Closed) {
+			m_window.close();
+		}
+	}
 }
