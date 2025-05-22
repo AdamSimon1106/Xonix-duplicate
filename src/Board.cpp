@@ -18,6 +18,7 @@ void Board::loadLevel(const LevelData& levelData)
 		for (unsigned x = 0; x < m_screenSize.x; ++x) {
 			if (y == 0 || y == m_screenSize.y - 1 || x == 0 || x == m_screenSize.x - 1) {
 				m_grid[y][x].setType(TileType::Border);
+				m_grid[y][x].setColor(sf::Color::Green);
 			}
 		}
 	}
