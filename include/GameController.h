@@ -17,10 +17,12 @@ private:
 	FileParser m_parser;
 	GameData m_gameData;
 	std::vector<LevelData> m_levels;
-	Board m_board;
 	Player m_player;
-	std::vector<Enemy> m_enemies;
 	Trail m_trail;
+	Board m_board;
+	
+	std::vector<Enemy> m_enemies;
+	
 	HUD m_bar;
 
 	sf::RenderWindow m_window;

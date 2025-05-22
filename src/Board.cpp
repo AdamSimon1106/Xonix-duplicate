@@ -7,7 +7,8 @@
 #include "../include/Enemy.h"
 #include <iostream>
 //initialize m_grid to empty tiles (relying of the tile c-tor)
-Board::Board(sf::Vector2i screenSize) : m_screenSize(screenSize), m_grid(screenSize.y, std::vector<Tile>(screenSize.x))
+Board::Board(sf::Vector2i screenSize/* Trail& trail*/) : m_screenSize(screenSize), m_grid(screenSize.y, std::vector<Tile>(screenSize.x))/*, m_trail(&trail)*/
+
 {
 	loadLevel(LevelData{});
 }
@@ -48,11 +49,51 @@ void Board::setTileAt(const int& x, const int& y, Tile newTile)
 	m_grid[y][x] = newTile;
 }
 
+void Board::setTileType(const int& x, const int& y, TileType type)
+{
+	m_grid[x][y].setType(type);
+	std::cout << x << " " << y << "\n";
+	std::cout << "in setTileType\n";
+	
+}
+
 bool Board::isInside(const int& x, const int& y) const
 {
 	if (y < m_screenSize.y - 1 && y > 0 && x < m_screenSize.x - 1 && x > 0) {
 		return true;
 	}
+	return false;
+}
+
+bool Board::isCollidewithclosedArea(sf::RectangleShape square) const
+{
+	std::vector<sf::RectangleShape> neighbors;
+
+	sf::Vector2f basePos = square.getPosition();
+	sf::Vector2f offsets[] = {
+		{-CELL_SIZE, -CELL_SIZE}, {0, -CELL_SIZE}, {CELL_SIZE, -CELL_SIZE},
+		{-CELL_SIZE, 0},                          {CELL_SIZE, 0},
+		{-CELL_SIZE, CELL_SIZE}, {0, CELL_SIZE}, {CELL_SIZE, CELL_SIZE}
+	};
+
+	for (const auto& offset : offsets) {
+		
+		sf::Vector2f neighborPos = basePos + offset;
+		int x = static_cast<int>(neighborPos.x / CELL_SIZE);
+		int y = static_cast<int>(neighborPos.y / CELL_SIZE);
+		if (x < 0 || x >= m_screenSize.x || y < 0 || y >= m_screenSize.y) {
+			continue; // Skip out-of-bounds neighbors
+		}
+		if (m_grid[y][x].getType() == TileType::Border) {
+			std::cout << "collide with border\n";
+			std::cout << "x: " << x << " y: " << y << "\n";
+			return true;
+		}
+		std::cout << "x: " << x << " y: " << y << "\n";
+		return false;	
+	}
+
+
 	return false;
 }
 
