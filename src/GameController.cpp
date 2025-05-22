@@ -21,6 +21,7 @@ void GameController::loadLevel()
 void GameController::render() 
 {
 	m_window.clear();
+	m_board.render(m_window);
 	m_window.display();
 
 }

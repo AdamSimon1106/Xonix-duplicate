@@ -20,11 +20,12 @@ public:
 	void setTileAt(const int& x, const int& y, Tile newTile);
 
 	bool isInside(const int& x, const int& y) const;
-	bool isWalkable(const int& x, const int& y) const;
-	
-	void floodFillFrom(int x, int y);
-	void fillArea();
+	//bool isWalkable(const int& x, const int& y) const;
+	//
+	//void floodFillFrom(int x, int y);
+	//void fillArea();
 
 	sf::Vector2i getSize() const;
+	void render(sf::RenderWindow& window);
 	void reset();
 };

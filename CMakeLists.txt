@@ -9,8 +9,6 @@ add_executable (${CMAKE_PROJECT_NAME}
         src/main.cpp
         src/Board.cpp
         include/Board.h
-        
-        
         src/FileParser.cpp
         include/FileParser.h
         src/GameController.cpp
@@ -23,7 +21,8 @@ add_executable (${CMAKE_PROJECT_NAME}
         include/Hud.h
         src/WindowManager.cpp
         include/WindowManager.h
-        include/Tile.h)
+        include/Tile.h
+        src/Tile.cpp)
 
         # Copy the entire resources/ folder into the build directory
 file(COPY resources DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

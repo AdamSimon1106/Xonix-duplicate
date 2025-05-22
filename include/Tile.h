@@ -1,4 +1,19 @@
 #pragma once
-enum class Tile {
+#include <SFML/Graphics.hpp>
+
+enum class TileType {
 	Empty, Trail, Filled, Border, temp, Enemy
+};
+
+class Tile {
+private:
+	sf::RectangleShape m_shape;
+	TileType m_type;
+
+public:
+	Tile();
+	void draw(sf::RenderWindow& window);
+	void setType(TileType type);
+	TileType getType() const;
+	void setColor(sf::Color color);
 };
