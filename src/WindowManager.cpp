@@ -1,5 +1,5 @@
 // Created by Adam Simonov and Benny Beer, 2025
-
+//new
 #include "WindowManager.h"
 
 WindowManager::WindowManager(const std::string& title, int width, int height)

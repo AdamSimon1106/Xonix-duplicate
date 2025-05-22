@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Macros.h"
 #include "Trail.h"
-
+//new
 //abstract class MovingObject <-- enemy, player;
 
 class MovingObject {
