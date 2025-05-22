@@ -13,7 +13,14 @@ Player::Player(const sf::Vector2i& startPosition, int lives)
 
 void Player::update(const sf::Time& deltaTime)
 {
-	
+	if (m_collide)
+	{
+		m_lives--;
+		m_collide = false;
+		
+		m_shape.setPosition(m_startPosition);
+		
+	}
 	handleInput();
 
 	sf::Vector2f moveDelta(
@@ -50,10 +57,7 @@ void Player::InWindow(sf::Vector2f& newPosition)
 	}
 }
 
-bool Player::checkCollisionWithTrail(Trail& trail)
-{
-	return trail.checkColistions(m_shape);
-}
+
 
 const int Player::getScore() const
 {
@@ -63,6 +67,21 @@ const int Player::getScore() const
 const int Player::getLive() const
 {
 	return m_lives;
+}
+
+sf::Vector2f Player::getOldPosition() const
+{
+	 return m_oldPosition; 
+}
+
+void Player::setCollide(bool collide)
+{
+	m_collide = collide;
+	if (collide)
+	{
+		m_shape.setPosition(m_startPosition);
+	}
+	
 }
 
 

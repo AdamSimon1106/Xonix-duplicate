@@ -23,12 +23,19 @@ void MovingObject::setPosition(sf::Vector2f pos)
 	m_shape.setPosition(pos);
 }
 
+bool MovingObject::checkCollisionWithTrail(Trail& trail)
+{
+	m_collide = trail.checkColistions(m_shape);
+	return m_collide;
+}
+
+
 sf::Vector2f MovingObject::getPoint()
 {
 	return m_shape.getPosition();
 }
 
-sf::Vector2f MovingObject::getStartPos()
+sf::Vector2f MovingObject::getStartPos() const
 {
 	return m_startPosition;
 }

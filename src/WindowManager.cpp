@@ -38,13 +38,15 @@ void WindowManager::update()
 	sf::Time deltaTime = m_clock.restart();
 	
 	m_player.update(deltaTime);
-	if (m_player.checkCollisionWithTrail(m_trail)) {
-		std::cout << "colide with trail" << std::endl;
-	}
+
 	m_trail.updatePath(m_player.getOldPosition());
+
+	m_player.setCollide(m_player.checkCollisionWithTrail(m_trail));
+
 	for (auto& enemy : m_enemies) {
-		
 		enemy.update(deltaTime);
+		m_player.setCollide(enemy.checkCollisionWithTrail(m_trail));
+		
 	}
 	HUDdata barData = {
 		m_player.getScore(),

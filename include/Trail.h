@@ -22,7 +22,8 @@ private:
 	}
 	std::vector<sf::RectangleShape> m_path;
 	
-	bool m_iscolide = false;
+	bool m_collide = false;
+
 
 
 };

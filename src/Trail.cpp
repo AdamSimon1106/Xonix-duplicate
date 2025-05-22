@@ -7,6 +7,11 @@ Trail::Trail(int size)
 
 void Trail::updatePath(sf::Vector2f point)
 {
+	if (m_collide == true)
+	{
+		m_path.clear();
+		m_collide = false;
+	}
 	if (!m_path.empty()) {
 		const sf::Vector2f& lastPos = m_path.back().getPosition();
 
@@ -62,54 +67,14 @@ bool Trail::checkColistions(const sf::RectangleShape& objBounde)
 	return false;
 }
 
+
+
 void Trail::handlecolisions()
 {
-	m_path.clear();
+	m_collide = true;
 }
 
 
-//bool Trail::colideWithObject(const sf::FloatRect& playerBounds)
-//{
-//	if (m_path.size() < 1) 
-//		return false;
-//
-//	for (auto it = m_path.begin(); it != m_path.end(); ++it)
-//	{
-//		sf::FloatRect trailRect(*it, trailShape.getSize());
-//		if (trailRect.intersects(playerBounds))
-//			return true;
-//	}
-//	return false;
-//}
 
-//bool Trail::collideWithObj(sf::Vector2f objPos) const {
-//	if (m_path.size() < 1)
-//		return false;
-//	for (auto it = m_path.begin(); it != m_path.end() - 1; ++it)
-//	{
-//		
-//		if (*it == objPos)
-//		{
-//			std::cout << it->x << " " << it->y << " " << objPos.x << " " << objPos.y << '\n';
-//			return true;
-//		}
-//			
-//	}
-//	return false;
-//
-//}
-
-//bool Trail::checkColision(sf::Vector2f point) const
-//{
-//	if (m_path.size() < 1)
-//		return false;
-//	for (auto it = m_path.begin(); it != m_path.end(); ++it)
-//	{
-//		sf::FloatRect trailRect(*it, trailShape.getSize());
-//		sf::FloatRect playerRect(point, trailShape.getSize());
-//		if (trailRect.intersects(playerRect))
-//			return true;
-//	}
-//}
 
 
