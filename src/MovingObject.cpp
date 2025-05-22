@@ -1,5 +1,5 @@
 #include "MovingObject.h"
-
+//new
 MovingObject::MovingObject(const sf::Vector2i& startPosition)
 	:m_startPosition(startPosition.x, startPosition.y), m_direction(0, 0)
 {
