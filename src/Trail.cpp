@@ -4,7 +4,7 @@
 Trail::Trail(int size)
 {
 }
-
+//to do check diraction changing
 void Trail::updatePath(sf::Vector2f point)
 {
 	if (m_collide == true)
@@ -12,8 +12,12 @@ void Trail::updatePath(sf::Vector2f point)
 		m_path.clear();
 		m_collide = false;
 	}
+	sf::Vector2i direction = { 0,0 };
 	if (!m_path.empty()) {
 		const sf::Vector2f& lastPos = m_path.back().getPosition();
+		/*direction.x = point.x - lastPos.x;
+		direction.y = point.y - lastPos.y;
+		std::cout << "direction: " << direction.x << " " << direction.y << "\n";*/
 
 		if (distance(lastPos, point) < CELL_SIZE -1) 
 		{
@@ -45,10 +49,10 @@ void Trail::draw(sf::RenderWindow& window) const
 
 bool Trail::checkColistions(const sf::RectangleShape& objBounde)
 {
-	if (m_path.size() < 1)
+	if (m_path.size() < 10)
 		return false;
 	sf::FloatRect intersection;
-	for (auto it = m_path.begin(); it != m_path.end() - 1; ++it)
+	for (auto it = m_path.begin(); it != m_path.end() - 10; ++it)
 	{
 		if (it->getGlobalBounds().intersects(objBounde.getGlobalBounds(), intersection))
 		{
