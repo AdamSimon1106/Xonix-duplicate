@@ -5,8 +5,13 @@
 #include "FileParser.h"
 #include "GameController.h"
 #include <filesystem>
+#include <cstdlib>  
+#include <ctime>    /
 int main() {
 	try {
+
+
+		srand(static_cast<unsigned>(time(nullptr)));
 		auto controller = GameController();
 		controller.run();
 	}

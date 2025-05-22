@@ -22,3 +22,13 @@ void Tile::setColor(sf::Color color)
 {
 	m_shape.setFillColor(color);
 }
+
+const sf::Vector2f Tile::getPosition() const
+{
+	return m_shape.getPosition();
+}
+
+void Tile::setPosition(float x, float y)
+{
+	m_shape.setPosition(x*CELL_SIZE, y*CELL_SIZE);
+}

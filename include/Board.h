@@ -27,5 +27,5 @@ public:
 
 	sf::Vector2i getSize() const;
 	void render(sf::RenderWindow& window);
-	void reset();
+	//void reset();
 };

@@ -5,28 +5,31 @@
 #include "../include/Board.h"
 #include "../include/MovingObject.h"
 #include "../include/Enemy.h"
+#include <iostream>
 //initialize m_grid to empty tiles (relying of the tile c-tor)
 Board::Board(sf::Vector2i screenSize) : m_screenSize(screenSize), m_grid(screenSize.y, std::vector<Tile>(screenSize.x))
-{}
+{
+	loadLevel(LevelData{});
+}
 
 void Board::loadLevel(const LevelData& levelData)
 {
-	//reset last level
-	//reset();
-	//load level
+	std::cout << "in loadLevel\n";
+	
 	for(unsigned y = 0; y < m_screenSize.y; ++y) {
 		for (unsigned x = 0; x < m_screenSize.x; ++x) {
 			if (y == 0 || y == m_screenSize.y - 1 || x == 0 || x == m_screenSize.x - 1) {
 				m_grid[y][x].setType(TileType::Border);
 				m_grid[y][x].setColor(sf::Color::Green);
+				m_grid[y][x].setPosition(x, y);
 			}
 		}
 	}
 	//set the starting position for the enemies
-	for (const Enemy& e : levelData.enemies) {
+	/*for (const Enemy& e : levelData.enemies) {
 		auto pos = e.getStartPos();
 		m_grid[pos.x][pos.y].setType(TileType::Enemy);
-	}
+	}*/
 	
 }
 //TODO
@@ -111,11 +114,12 @@ sf::Vector2i Board::getSize() const
 
 void Board::render(sf::RenderWindow& window)
 {
-	for (int y = 0; y < m_screenSize.y; ++y){ 
-		for (int x = 0; x < m_screenSize.x; ++x) {
-			m_grid[y][x].draw(window);
+	for (auto& row : m_grid) {
+		for (auto& tile : row) {
+			tile.draw(window);
+			
 		}
-	}
+	} 
 }
 
 //void Board::reset()

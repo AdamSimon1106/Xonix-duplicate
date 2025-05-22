@@ -1,7 +1,7 @@
 //
 // Created by Adam Simonov on 12/5/25.
 //
-
+#include <iostream>
 #include "../include/FileParser.h"
 
 GameData FileParser::parseGameData()
@@ -12,6 +12,7 @@ GameData FileParser::parseGameData()
 
 	std::istringstream iss(line);
 	iss >> data.screenSize.x >> data.screenSize.y >> data.numOfLives;
+	std::cout << data.screenSize.x;
 	return data;
 }
 
