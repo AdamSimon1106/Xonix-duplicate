@@ -1,5 +1,5 @@
 #include "MovingObject.h"
-
+//new
 MovingObject::MovingObject(const sf::Vector2i& startPosition)
 	: m_startPosition(startPosition), m_position(static_cast<sf::Vector2f>(startPosition)) {
 	
