@@ -21,7 +21,7 @@ void MovingObject::setPosition(sf::Vector2f pos)
     m_position = pos;
 }
 
-sf::Vector2f MovingObject::getStartPos()
+sf::Vector2f MovingObject::getStartPos() const
 {
     return m_startPosition;
 }

@@ -15,7 +15,7 @@ public:
 	bool checkCollisionWithTrail(Trail& trail);
 	sf::Vector2f getPoint();
 	void setPosition(sf::Vector2f pos);
-	sf::Vector2f getStartPos();
+	sf::Vector2f getStartPos() const;
 
 
 	void setTextur(sf::Color color);
