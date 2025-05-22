@@ -15,7 +15,7 @@ void Trail::updatePath(sf::Vector2f point)
 	if (!m_path.empty()) {
 		const sf::Vector2f& lastPos = m_path.back().getPosition();
 
-		if (distance(lastPos, point) < CELL_SIZE-1) 
+		if (distance(lastPos, point) < CELL_SIZE -1) 
 		{
 			return;
 		}
@@ -23,12 +23,12 @@ void Trail::updatePath(sf::Vector2f point)
 	}
 
 	sf::RectangleShape square;
-	//square.getGlobalBounds().contains(point);
+	
 
 	square.setSize({ CELL_SIZE, CELL_SIZE });
 
 	square.setPosition(point);
-	square.setFillColor(sf::Color::Magenta); // או כל צבע שתבחר
+	square.setFillColor(sf::Color::Magenta); 
 	m_path.push_back(square);
 
 	
@@ -72,6 +72,13 @@ bool Trail::checkColistions(const sf::RectangleShape& objBounde)
 void Trail::handlecolisions()
 {
 	m_collide = true;
+}
+
+const float Trail::distance(const sf::Vector2f x1, const sf::Vector2f x2) const
+{
+	float dx = abs(x1.x - x2.x);
+	float dy = abs(x1.y - x2.y);
+	return dx > dy ? dx : dy;
 }
 
 

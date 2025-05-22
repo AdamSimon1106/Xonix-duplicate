@@ -48,10 +48,14 @@ void WindowManager::update()
 		m_player.setCollide(enemy.checkCollisionWithTrail(m_trail));
 		
 	}
+
+	m_countDown -= deltaTime.asSeconds();
+	if (m_countDown < 0)
+		m_countDown = 0;
 	HUDdata barData = {
 		m_player.getScore(),
 		m_player.getLive(),
-		0,
+		m_countDown,
 		0.
 
 	};

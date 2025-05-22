@@ -14,12 +14,8 @@ public:
 	
 	
 private:
-	float distance(sf::Vector2f x1, sf::Vector2f x2)
-	{
-		float dx = abs(x1.x - x2.x);
-		float dy = abs(x1.y - x2.y);
-		return dx>dy ? dx : dy;
-	}
+	const float distance(const sf::Vector2f x1,const sf::Vector2f x2) const;
+	
 	std::vector<sf::RectangleShape> m_path;
 	
 	bool m_collide = false;
