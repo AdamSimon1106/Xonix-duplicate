@@ -5,14 +5,11 @@
 Player::Player(const sf::Vector2i& startPosition, int lives)
 	:MovingObject(startPosition) , m_lives(lives), m_score(0)
 {
-	setTextur(sf::Color(128, 0, 128));
+	setTextur(sf::Color::Red);
+	m_speed = 100.f; 
     
 }
 
-void Player::draw(sf::RenderWindow& window) const
-{
-	window.draw(m_sprite);
-}
 
 void Player::update(const sf::Time& deltaTime)
 {
@@ -24,20 +21,20 @@ void Player::update(const sf::Time& deltaTime)
 		m_direction.y * m_speed * deltaTime.asSeconds()
 	);
 
-	sf::Vector2f newPosition = m_position + moveDelta;
+	sf::Vector2f newPosition = m_shape.getPosition() + moveDelta;
 
 	
 	InWindow(newPosition);
 
-	m_position = newPosition;
+	m_oldPosition = m_shape.getPosition();
+	m_shape.setPosition(newPosition);
 	
-	m_sprite.setPosition(m_position);
-
+	
 }
 
 void Player::InWindow(sf::Vector2f& newPosition)
 {
-	sf::FloatRect bounds = m_sprite.getGlobalBounds();
+	sf::FloatRect bounds = m_shape.getGlobalBounds();
 
 	if (newPosition.x < 0) {
 		newPosition.x = 0;
@@ -53,6 +50,11 @@ void Player::InWindow(sf::Vector2f& newPosition)
 	}
 }
 
+bool Player::checkCollisionWithTrail(Trail& trail)
+{
+	return trail.checkColistions(m_shape);
+}
+
 const int Player::getScore() const
 {
 	return m_score;
@@ -62,13 +64,6 @@ const int Player::getLive() const
 {
 	return m_lives;
 }
-
-bool Player::checkCollisionWithTraill(const Trail& trail)
-{
-	return trail.collideWithObj(m_position);
-}
-
-
 
 
 void Player::handleInput()

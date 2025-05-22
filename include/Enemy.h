@@ -8,7 +8,6 @@
 class Enemy : public MovingObject{
 public:
 	Enemy(const sf::Vector2i& startPosition);
-	void draw(sf::RenderWindow& window) const;
 	void update(const sf::Time& deltaTime);
 	void InWindow(sf::Vector2f& newPosition);
 	void setDirection();

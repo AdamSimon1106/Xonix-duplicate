@@ -12,10 +12,6 @@ Enemy::Enemy(const sf::Vector2i& startPosition)
 	setDirection();
 }
 
-void Enemy::draw(sf::RenderWindow& window) const
-{
-	window.draw(m_sprite);
-}
 
 void Enemy::update(const sf::Time& deltaTime)
 {
@@ -24,17 +20,15 @@ void Enemy::update(const sf::Time& deltaTime)
 		m_direction.y * m_speed * deltaTime.asSeconds()
 	);
 
-	sf::Vector2f newPosition = m_position + moveDelta;
-
+	sf::Vector2f newPosition = m_shape.getPosition() + moveDelta;
 	InWindow(newPosition);
-	m_position = newPosition;
-	m_sprite.setPosition(m_position);
-
+	m_shape.setPosition(newPosition);
+	
 }
 
 void Enemy::InWindow(sf::Vector2f& newPosition)
 {
-	sf::FloatRect bounds = m_sprite.getGlobalBounds();
+	sf::FloatRect bounds = m_shape.getGlobalBounds();
 
 	if (newPosition.x < 0) {
 		newPosition.x = 0;
