@@ -11,7 +11,7 @@ int main() {
 	try {
 
 
-		srand(static_cast<unsigned>(time(nullptr)));
+		srand(static_cast<unsigned>(std::time(nullptr)));
 		auto controller = GameController();
 		controller.run();
 	}
