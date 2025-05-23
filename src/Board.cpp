@@ -7,7 +7,7 @@
 #include "../include/Enemy.h"
 #include <iostream>
 //initialize m_grid to empty tiles (relying of the tile c-tor)
-Board::Board(sf::Vector2i screenSize/* Trail& trail*/) : m_screenSize(screenSize), m_grid(screenSize.y, std::vector<Tile>(screenSize.x))/*, m_trail(&trail)*/
+Board::Board(sf::Vector2i screenSize/* Trail& trail*/) : m_screenSize(screenSize), m_grid(screenSize.y, std::vector<Tile>(screenSize.x))
 
 {
 	loadLevel(LevelData{});
@@ -23,6 +23,9 @@ void Board::loadLevel(const LevelData& levelData)
 				m_grid[y][x].setType(TileType::Border);
 				m_grid[y][x].setColor(sf::Color::Green);
 				m_grid[y][x].setPosition(x, y);
+			}
+			else {
+				m_grid[y][x].setType(TileType::Empty);
 			}
 		}
 	}
@@ -41,6 +44,10 @@ int Board::getFillPresentage() const
 
 Tile Board::getTileAt(const int& x, const int& y) const
 {
+	if (x < 0 || x >= m_screenSize.x - 1 || y < 0 || y >= m_screenSize.y - 1) {
+		throw std::out_of_range("Coordinates out of bounds");
+	}
+	std::cout << x << " " << y << "\n";
 	return m_grid[y][x];
 }
 
@@ -85,8 +92,8 @@ bool Board::isCollidewithclosedArea(sf::RectangleShape square) const
 			continue; // Skip out-of-bounds neighbors
 		}
 		if (m_grid[y][x].getType() == TileType::Border) {
-			std::cout << "collide with border\n";
-			std::cout << "x: " << x << " y: " << y << "\n";
+			/*std::cout << "collide with border\n";
+			std::cout << "x: " << x << " y: " << y << "\n";*/
 			return true;
 		}
 		std::cout << "x: " << x << " y: " << y << "\n";

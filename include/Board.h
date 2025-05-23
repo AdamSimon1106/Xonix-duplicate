@@ -11,16 +11,16 @@ class Board {
 private:
 	sf::Vector2i m_screenSize;
 	std::vector<std::vector<Tile>> m_grid;
-	Trail* m_trail = nullptr;
-
+	
 public:
-	Board(sf::Vector2i screenSize /*Trail& trail*/);
+	Board(sf::Vector2i screenSize);
 	void loadLevel(const LevelData& levelData);
 	int getFillPresentage() const;
 
 	Tile getTileAt(const int& x, const int& y) const;
 	void setTileAt(const int& x, const int& y, Tile newTile);
 
+	
 	void setTileType(const int& x, const int& y, TileType type);
 
 	bool isInside(const int& x, const int& y) const;

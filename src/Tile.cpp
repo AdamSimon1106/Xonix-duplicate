@@ -32,3 +32,4 @@ void Tile::setPosition(float x, float y)
 {
 	m_shape.setPosition(x*CELL_SIZE, y*CELL_SIZE);
 }
+

@@ -1,9 +1,10 @@
 // Created by Adam Simonov and Benny Beer, 2025
 
 #include "Player.h"
+#include <iostream>
 
-Player::Player(const sf::Vector2i& startPosition, int lives)
-	:MovingObject(startPosition) , m_lives(lives), m_score(0)
+Player::Player(const sf::Vector2i& startPosition, int lives, Board& Board)
+	:MovingObject(startPosition), m_lives(lives), m_score(0), m_board(&Board)
 {
 	setTextur(sf::Color::Red);
 	m_speed = 100.f; 
@@ -35,7 +36,15 @@ void Player::update(const sf::Time& deltaTime)
 
 	m_oldPosition = m_shape.getPosition();
 	m_shape.setPosition(newPosition);
-	
+	if (m_board->getTileAt(m_shape.getPosition().x / CELL_SIZE, m_shape.getPosition().y / CELL_SIZE).getType() == TileType::Empty)
+	{
+		m_isOnEmptyTile = true;
+		std::cout << "Player is on empty tile" << std::endl;
+	}
+	else
+	{
+		m_isOnEmptyTile = false;
+	}
 	
 }
 
@@ -69,9 +78,16 @@ const int Player::getLive() const
 	return m_lives;
 }
 
+
+
 sf::Vector2f Player::getOldPosition() const
 {
 	 return m_oldPosition; 
+}
+
+const bool Player::isWalkingOnEmptyTile() const
+{
+	return m_isOnEmptyTile;
 }
 
 void Player::setCollide(bool collide)

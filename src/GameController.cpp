@@ -10,7 +10,7 @@ GameController::GameController() : m_parser("resources/game_data.txt"),
 								   m_levels(m_parser.parseLevelData()),
 								   m_board(m_gameData.screenSize),
 								   m_window(sf::VideoMode(m_board.getSize().x*CELL_SIZE, m_board.getSize().y*CELL_SIZE),"xonix"),
-								   m_player(sf::Vector2i(0, 0), 1000),
+								   m_player(sf::Vector2i(0, 0), 1000, m_board),
 								   m_trail(CELL_SIZE)
 {
 	
@@ -52,8 +52,10 @@ void GameController::update()
 	sf::Time deltaTime = m_clock.restart();
 
 	m_player.update(deltaTime);
-
-	m_trail.updatePath(m_player.getOldPosition());
+	if(m_player.isWalkingOnEmptyTile())
+	{
+		m_trail.updatePath(m_player.getOldPosition());
+	}
 	if (m_board.isCollidewithclosedArea(m_trail.getLastRect()))
 	{
 	
@@ -63,7 +65,7 @@ void GameController::update()
 	m_player.setCollide(m_player.checkCollisionWithTrail(m_trail));
 
 	for (auto& enemy : m_enemies) {
-		enemy.update(deltaTime);
+		//enemy.update(deltaTime);
 		m_player.setCollide(enemy.checkCollisionWithTrail(m_trail));
 
 	}

@@ -9,11 +9,11 @@ Trail::Trail(int size)
 void Trail::updatePath(sf::Vector2f point)
 {
 	setDirection();
-	if (m_collide == true)
+	/*if (m_collide == true)
 	{
 		m_path.clear();
 		m_collide = false;
-	}
+	}*/
 	
 	if (!m_path.empty()) {
 		const sf::Vector2f& lastPos = m_path.back().getPosition();
@@ -70,6 +70,7 @@ bool Trail::checkColistions(const sf::RectangleShape& objBounde)
 void Trail::handlecolisions()
 {
 	m_collide = true;
+	m_path.clear();
 }
 
 void Trail::setDirection()
@@ -98,14 +99,6 @@ void Trail::setAndPushLastRect(sf::Vector2f point)
 	std::cout << "add point: " << point.x << " " << point.y << "\n";
 
 }
-
-
-//bool Trail::isAreaClosed(const Board& board)
-//{
-//	if (m_path.size() < 5)
-//		return false;
-//	return board.isCollidewithclosedArea(m_path.back());
-//}
 
 const float Trail::distance(const sf::Vector2f x1, const sf::Vector2f x2) const
 {
