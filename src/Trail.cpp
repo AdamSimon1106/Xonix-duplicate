@@ -100,6 +100,11 @@ void Trail::setAndPushLastRect(sf::Vector2f point)
 
 }
 
+std::vector<sf::RectangleShape> Trail::getPath() const
+{
+	return m_path;
+}
+
 const float Trail::distance(const sf::Vector2f x1, const sf::Vector2f x2) const
 {
 	float dx = abs(x1.x - x2.x);

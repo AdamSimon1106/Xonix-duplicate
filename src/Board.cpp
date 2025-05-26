@@ -6,6 +6,10 @@
 #include "../include/MovingObject.h"
 #include "../include/Enemy.h"
 #include <iostream>
+#include <queue> 
+#include <fstream>
+using Pos = std::pair<int, int>;
+
 //initialize m_grid to empty tiles (relying of the tile c-tor)
 Board::Board(sf::Vector2i screenSize/* Trail& trail*/) : m_screenSize(screenSize), m_grid(screenSize.y, std::vector<Tile>(screenSize.x))
 
@@ -29,6 +33,7 @@ void Board::loadLevel(const LevelData& levelData)
 			}
 		}
 	}
+
 	//set the starting position for the enemies
 	/*for (const Enemy& e : levelData.enemies) {
 		auto pos = e.getStartPos();
@@ -88,8 +93,8 @@ bool Board::isCollidewithclosedArea(sf::Vector2i pos, sf::Vector2f dir) const
 	const auto& nextTile = m_grid[y][x];
 
 	// רק אם השחקן *עוד לא* נמצא על Border, ובכיוון הבא יש Border
-	if (nextTile.getType() == TileType::Border &&
-		m_grid[pos.y][pos.x].getType() != TileType::Border) {
+	if (nextTile.getType() == TileType::Filled &&
+		m_grid[pos.y][pos.x].getType() != TileType::Filled) {
 		std::cout << "Collision with closed area at: " << x << ", " << y << std::endl;
 		return true;
 	}
@@ -97,97 +102,79 @@ bool Board::isCollidewithclosedArea(sf::Vector2i pos, sf::Vector2f dir) const
 	return false;
 }
 
-//bool Board::isWalkable(const int& x, const int& y) const
-//{
-//	if (m_grid[y][x] == Tile::Empty || m_grid[y][x] == Tile::Filled) {
-//		return true;
-//	}
-//	return false;
-//}
-
-//void Board::floodFillFrom(int x, int y)
-//{
-//	if (!isInside(x, y)) return;
-//	if (getTileAt(x, y) != Tile::Empty) return;
-//
-//	setTileAt(x, y, Tile::temp);
-//
-//	floodFillFrom(x + 1, y);
-//	floodFillFrom(x - 1, y);
-//	floodFillFrom(x, y + 1);
-//	floodFillFrom(x, y - 1);
-//}
-
-void Board::fillArea(const Trail& trail)
+void Board::closeEnclosedArea(std::vector<sf::RectangleShape> trail)
 {
-	for (const auto& point : trail.getPath())
+	for (const auto& shape : trail)
 	{
-		int x = static_cast<int>(point.getPosition().x / CELL_SIZE);
-		int y = static_cast<int>(point.getPosition().y / CELL_SIZE);
-		if (isInside(x, y)) {
-			setTileType(x, y, TileType::Trail);
+		int x = static_cast<int>(shape.getPosition().x / CELL_SIZE);
+		int y = static_cast<int>(shape.getPosition().y / CELL_SIZE);
+		if (isInside(y, x)) {
+			setTileType(y, x, TileType::Filled);
 		}
 	};
 
-	unsigned width = static_cast<int>(m_screenSize.x - 1);
-	std::cout << "Width: " << width << std::endl;
-	unsigned height = static_cast<int>(m_screenSize.y - 1);
-	std::cout << "Height: " << height << std::endl;
+	floodFillFromBorder();
 
+	int rows = m_grid.size();
+	int cols = m_grid[0].size();
 
-
-	// Step 1: Flood-fill from all border positions
-	for (int x = 0; x <= width; ++x) {
-		floodFill(1, x);
-		floodFill(height, x);
-	}
-	for (int y = 0; y <= height; ++y) {
-		floodFill(y, 1);
-		floodFill(y, width);
-	}
-
-	std::ofstream outFile("filename");
-	if (!outFile) {
-		//std::cerr << "Failed to open file: " << filename << std::endl;
-		return;
-	}
-	for (int y = 0; y <= height; ++y) {
-		for (int x = 0; x <= width; ++x) {
-			outFile << static_cast<int>(getTileAt(x, y).getType()) << " ";
-		}
-
-		outFile << '\n';
-	}
-
-	// Step 2: Fill enclosed area and clean up
-	for (int y = 0; y < height; ++y) {
-		for (int x = 0; x < width; ++x) {
-			Tile tile = getTileAt(x, y);
-			if (tile.getType() == TileType::temp /*|| tile.getType() == TileType::Trail*/) {
-
-				setTileType(x, y, TileType::Filled);
-				m_grid[y][x].setColor(sf::Color::Blue);
-				m_grid[y][x].setPosition(x, y);
-
+	for (int y = 0; y < rows; ++y) {
+		for (int x = 0; x < cols; ++x) {
+			if (m_grid[y][x].getType() == TileType::Empty)
+			{
+				m_grid[y][x].setType(TileType::Filled);
+				m_grid[y][x].setColor(sf::Color::Green); // צבע את השטח הסגור בירוק
+				m_grid[y][x].setPosition(x, y); // עדכון המיקום של הטיל
 			}
-			else {
 
-				setTileType(x, y, TileType::Empty);
+			else if (m_grid[y][x].getType() == TileType::Visited)
+				m_grid[y][x].setType(TileType::Empty);
+			else if (m_grid[y][x].getType() == TileType::Trail)
+				m_grid[y][x].setType(TileType::Filled); // השביל הופך לשטח סגור
+		}
+	}
+}
 
+void Board::floodFillFromBorder()
+{
+	int rows = m_grid.size();
+	int cols = m_grid[0].size();
+	std::queue<Pos> q;
+
+	auto inBounds = [&](int y, int x) {
+		return y >= 0 && y < rows && x >= 0 && x < cols;
+		};
+
+	// התחלה מהגבולות
+	for (int y = 0; y < rows; ++y) {
+		for (int x : {0, cols - 1}) {
+			if (m_grid[y][x].getType() == TileType::Empty) {
+				q.push({ y, x });
+				m_grid[y][x].setType(TileType::Visited);
 			}
 		}
 	}
-	std::ofstream outFile1("filename.txt");
-	if (!outFile1) {
-		//std::cerr << "Failed to open file: " << filename << std::endl;
-		return;
-	}
-	for (int y = 0; y <= height; ++y) {
-		for (int x = 0; x <= width; ++x) {
-			outFile1 << static_cast<int>(getTileAt(x, y).getType()) << " ";
-		}
 
-		outFile1 << '\n';
+	for (int x = 0; x < cols; ++x) {
+		for (int y : {0, rows - 1}) {
+			if (m_grid[y][x].getType() == TileType::Empty) {
+				q.push({ y, x });
+				m_grid[y][x].setType(TileType::Visited);
+			}
+		}
+	}
+
+	// BFS
+	std::vector<Pos> directions = { {0,1}, {1,0}, {0,-1}, {-1,0} };
+	while (!q.empty()) {
+		auto [y, x] = q.front(); q.pop();
+		for (auto [dy, dx] : directions) {
+			int ny = y + dy, nx = x + dx;
+			if (inBounds(ny, nx) && m_grid[ny][nx].getType() == TileType::Empty) {
+				m_grid[ny][nx].setType(TileType::Visited);
+				q.push({ ny, nx });
+			}
+		}
 	}
 }
 

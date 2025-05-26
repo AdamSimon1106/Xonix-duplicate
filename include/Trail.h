@@ -17,6 +17,7 @@ public:
 	const sf::RectangleShape getLastRect() const;
 	void setAndPushLastRect(sf::Vector2f point);
 
+	std::vector<sf::RectangleShape> getPath() const;
 	
 private:
 	const float distance(const sf::Vector2f x1,const sf::Vector2f x2) const;

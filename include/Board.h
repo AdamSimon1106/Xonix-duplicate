@@ -7,6 +7,9 @@
 #include "Trail.h"
 #include <SFML/Graphics.hpp>
 
+
+using Pos = std::pair<int, int>;
+
 class Board {
 private:
 	sf::Vector2i m_screenSize;
@@ -29,7 +32,9 @@ public:
 	//bool isWalkable(const int& x, const int& y) const;
 	//
 	//void floodFillFrom(int x, int y);
-	void fillArea(const Trail& trail);
+	void closeEnclosedArea(std::vector<sf::RectangleShape> trail);
+	void floodFillFromBorder();
+
 
 	sf::Vector2i getSize() const;
 	void render(sf::RenderWindow& window);
