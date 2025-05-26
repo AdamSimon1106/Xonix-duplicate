@@ -19,7 +19,7 @@ void Trail::updatePath(sf::Vector2f point)
 		const sf::Vector2f& lastPos = m_path.back().getPosition();
 		
 		float dis = distance(lastPos, point);
-		if (dis > CELL_SIZE/2) 
+		if (dis > CELL_SIZE/3) 
 		{
 			setAndPushLastRect(point);
 			return;
