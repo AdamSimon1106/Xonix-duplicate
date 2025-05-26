@@ -58,6 +58,8 @@ void GameController::update()
 	}
 	if (m_board.isCollidewithclosedArea(m_player.getPosOnGrid(), m_player.getDirection()))
 	{
+		m_board.fillArea(m_trail); // this works, now draw the filled
+
 		std::cout << "Collided with closed area\n";
 	}
 	
