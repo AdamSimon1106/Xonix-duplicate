@@ -7,7 +7,7 @@
 #include "../include/Enemy.h"
 #include <iostream>
 #include <queue> 
-#include <fstream>
+#include <iostream>
 using Pos = std::pair<int, int>;
 
 //initialize m_grid to empty tiles (relying of the tile c-tor)
@@ -19,7 +19,12 @@ Board::Board(sf::Vector2i screenSize/* Trail& trail*/) : m_screenSize(screenSize
 
 void Board::loadLevel(const LevelData& levelData)
 {
-	std::cout << "in loadLevel\n";
+	
+	std::ofstream outFile2("board.txt");
+	if (!outFile2) {
+		//std::cerr << "Failed to open file: " << filename << std::endl;
+		return;
+	}
 	
 	for(unsigned y = 0; y < m_screenSize.y; ++y) {
 		for (unsigned x = 0; x < m_screenSize.x; ++x) {
@@ -27,11 +32,14 @@ void Board::loadLevel(const LevelData& levelData)
 				m_grid[y][x].setType(TileType::Filled);
 				m_grid[y][x].setColor(sf::Color::Green);
 				m_grid[y][x].setPosition(x, y);
+				outFile2 << static_cast<int>(TileType::Filled) << " "; // Save the tile type to the file
 			}
 			else {
 				m_grid[y][x].setType(TileType::Empty);
+				outFile2 << static_cast<int>(TileType::Empty) << " "; // Save the tile type to the file
 			}
 		}
+		outFile2 << "\n"; // New line for each row
 	}
 
 	//set the starting position for the enemies
@@ -112,8 +120,22 @@ void Board::closeEnclosedArea(std::vector<sf::RectangleShape> trail)
 			setTileType(y, x, TileType::Filled);
 		}
 	};
+	std::ofstream outFile3("trail.txt");
+	for (int y = 0; y < m_screenSize.y; ++y) {
+		for (int x = 0; x < m_screenSize.x; ++x) {
+			outFile3 << static_cast<int>(m_grid[y][x].getType()) << " ";
+		}
+		outFile3 << "\n"; // New line for each row
+	}
 
 	floodFillFromBorder();
+	std::ofstream outFile("floodfill.txt");
+	for (int y = 0; y < m_screenSize.y; ++y) {
+		for (int x = 0; x < m_screenSize.x; ++x) {
+			outFile << static_cast<int>(m_grid[y][x].getType()) << " ";
+		}
+		outFile << "\n"; // New line for each row
+	}
 
 	int rows = m_grid.size();
 	int cols = m_grid[0].size();
