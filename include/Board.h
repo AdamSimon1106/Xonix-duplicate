@@ -29,7 +29,7 @@ public:
 	//bool isWalkable(const int& x, const int& y) const;
 	//
 	//void floodFillFrom(int x, int y);
-	//void fillArea();
+	void fillArea(const Trail& trail);
 
 	sf::Vector2i getSize() const;
 	void render(sf::RenderWindow& window);

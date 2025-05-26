@@ -118,35 +118,78 @@ bool Board::isCollidewithclosedArea(sf::Vector2i pos, sf::Vector2f dir) const
 //	floodFillFrom(x, y - 1);
 //}
 
+void Board::fillArea(const Trail& trail)
+{
+	for (const auto& point : trail.getPath())
+	{
+		int x = static_cast<int>(point.getPosition().x / CELL_SIZE);
+		int y = static_cast<int>(point.getPosition().y / CELL_SIZE);
+		if (isInside(x, y)) {
+			setTileType(x, y, TileType::Trail);
+		}
+	};
 
-//void Board::fillArea()
-//{
-//	unsigned width = m_screenSize.x;
-//	unsigned height = m_screenSize.y;
-//	// Step 1: Flood-fill from all border positions
-//	for (int x = 0; x < static_cast<int>(width); ++x) {
-//		floodFillFrom(x, 0);
-//		floodFillFrom(x, height - 1);
-//	}
-//	for (int y = 0; y < static_cast<int>(height); ++y) {
-//		floodFillFrom(0, y);
-//		floodFillFrom(width - 1, y);
-//	}
-//
-//	// Step 2: Fill enclosed area and clean up
-//	for (int y = 0; y < static_cast<int>(height); ++y) {
-//		for (int x = 0; x < static_cast<int>(width); ++x) {
-//			Tile tile = getTileAt(x, y);
-//			if (tile == Tile::Empty || tile == Tile::Trail) {
-//				setTileAt(x, y, Tile::Filled);
-//			}
-//			else if (tile == Tile::temp) {
-//				setTileAt(x, y, Tile::Empty);
-//			}
-//		}
-//	}
-//}
+	unsigned width = static_cast<int>(m_screenSize.x - 1);
+	std::cout << "Width: " << width << std::endl;
+	unsigned height = static_cast<int>(m_screenSize.y - 1);
+	std::cout << "Height: " << height << std::endl;
 
+
+
+	// Step 1: Flood-fill from all border positions
+	for (int x = 0; x <= width; ++x) {
+		floodFill(1, x);
+		floodFill(height, x);
+	}
+	for (int y = 0; y <= height; ++y) {
+		floodFill(y, 1);
+		floodFill(y, width);
+	}
+
+	std::ofstream outFile("filename");
+	if (!outFile) {
+		//std::cerr << "Failed to open file: " << filename << std::endl;
+		return;
+	}
+	for (int y = 0; y <= height; ++y) {
+		for (int x = 0; x <= width; ++x) {
+			outFile << static_cast<int>(getTileAt(x, y).getType()) << " ";
+		}
+
+		outFile << '\n';
+	}
+
+	// Step 2: Fill enclosed area and clean up
+	for (int y = 0; y < height; ++y) {
+		for (int x = 0; x < width; ++x) {
+			Tile tile = getTileAt(x, y);
+			if (tile.getType() == TileType::temp /*|| tile.getType() == TileType::Trail*/) {
+
+				setTileType(x, y, TileType::Filled);
+				m_grid[y][x].setColor(sf::Color::Blue);
+				m_grid[y][x].setPosition(x, y);
+
+			}
+			else {
+
+				setTileType(x, y, TileType::Empty);
+
+			}
+		}
+	}
+	std::ofstream outFile1("filename.txt");
+	if (!outFile1) {
+		//std::cerr << "Failed to open file: " << filename << std::endl;
+		return;
+	}
+	for (int y = 0; y <= height; ++y) {
+		for (int x = 0; x <= width; ++x) {
+			outFile1 << static_cast<int>(getTileAt(x, y).getType()) << " ";
+		}
+
+		outFile1 << '\n';
+	}
+}
 
 sf::Vector2i Board::getSize() const
 {
