@@ -56,7 +56,7 @@ void GameController::update()
 	{
 		m_trail.updatePath(m_player.getOldPosition());
 	}
-	if (m_board.isCollidewithclosedArea(m_trail.getLastRect()))
+	if (m_board.isCollidewithclosedArea(m_player.getPosOnGrid()))
 	{
 	
 	}

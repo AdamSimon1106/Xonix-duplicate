@@ -36,10 +36,12 @@ void Player::update(const sf::Time& deltaTime)
 
 	m_oldPosition = m_shape.getPosition();
 	m_shape.setPosition(newPosition);
-	if (m_board->getTileAt(m_shape.getPosition().x / CELL_SIZE, m_shape.getPosition().y / CELL_SIZE).getType() == TileType::Empty)
+	sf::Vector2i posOnGrid = getPosOnGrid();
+	if (m_board->getTileAt(posOnGrid.x, posOnGrid.y).getType() == TileType::Empty)
 	{
 		m_isOnEmptyTile = true;
 		std::cout << "Player is on empty tile" << std::endl;
+		std::cout << "Player position: " << posOnGrid.x << ", " << posOnGrid.y << std::endl;
 	}
 	else
 	{

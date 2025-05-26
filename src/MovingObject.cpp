@@ -39,3 +39,13 @@ sf::Vector2f MovingObject::getStartPos() const
 {
 	return m_startPosition;
 }
+
+sf::Vector2i MovingObject::getPosOnGrid() const
+{
+	sf::Vector2f pos = m_shape.getPosition();
+	int x = static_cast<int>(pos.x / CELL_SIZE);
+	int y = static_cast<int>(pos.y / CELL_SIZE);
+
+	return sf::Vector2i(x, y);
+	
+}

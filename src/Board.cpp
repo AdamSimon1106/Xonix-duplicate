@@ -44,10 +44,10 @@ int Board::getFillPresentage() const
 
 Tile Board::getTileAt(const int& x, const int& y) const
 {
-	if (x < 0 || x >= m_screenSize.x - 1 || y < 0 || y >= m_screenSize.y - 1) {
+	if (x < 0 || x > m_screenSize.x - 1 || y < 0 || y > m_screenSize.y - 1) {
 		throw std::out_of_range("Coordinates out of bounds");
 	}
-	std::cout << x << " " << y << "\n";
+	
 	return m_grid[y][x];
 }
 
@@ -72,7 +72,7 @@ bool Board::isInside(const int& x, const int& y) const
 	return false;
 }
 
-bool Board::isCollidewithclosedArea(sf::RectangleShape square) const
+bool Board::isCollidewithclosedArea(sf::Vector2i pos) const
 {
 	std::vector<sf::RectangleShape> neighbors;
 
