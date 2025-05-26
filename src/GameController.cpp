@@ -56,9 +56,9 @@ void GameController::update()
 	{
 		m_trail.updatePath(m_player.getOldPosition());
 	}
-	if (m_board.isCollidewithclosedArea(m_player.getPosOnGrid()))
+	if (m_board.isCollidewithclosedArea(m_player.getPosOnGrid(), m_player.getDirection()))
 	{
-	
+		std::cout << "Collided with closed area\n";
 	}
 	
 	

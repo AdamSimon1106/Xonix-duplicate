@@ -20,7 +20,7 @@ void Board::loadLevel(const LevelData& levelData)
 	for(unsigned y = 0; y < m_screenSize.y; ++y) {
 		for (unsigned x = 0; x < m_screenSize.x; ++x) {
 			if (y == 0 || y == m_screenSize.y - 1 || x == 0 || x == m_screenSize.x - 1) {
-				m_grid[y][x].setType(TileType::Border);
+				m_grid[y][x].setType(TileType::Filled);
 				m_grid[y][x].setColor(sf::Color::Green);
 				m_grid[y][x].setPosition(x, y);
 			}
@@ -72,34 +72,27 @@ bool Board::isInside(const int& x, const int& y) const
 	return false;
 }
 
-bool Board::isCollidewithclosedArea(sf::Vector2i pos) const
+bool Board::isCollidewithclosedArea(sf::Vector2i pos, sf::Vector2f dir) const
 {
-	std::vector<sf::RectangleShape> neighbors;
+	
+	sf::Vector2i offset = static_cast<sf::Vector2i>(dir);
 
-	sf::Vector2f basePos = square.getPosition();
-	sf::Vector2f offsets[] = {
-		{-CELL_SIZE, -CELL_SIZE}, {0, -CELL_SIZE}, {CELL_SIZE, -CELL_SIZE},
-		{-CELL_SIZE, 0},                          {CELL_SIZE, 0},
-		{-CELL_SIZE, CELL_SIZE}, {0, CELL_SIZE}, {CELL_SIZE, CELL_SIZE}
-	};
+	int x = pos.x + offset.x;
+	int y = pos.y + offset.y;
 
-	for (const auto& offset : offsets) {
-		
-		sf::Vector2f neighborPos = basePos + offset;
-		int x = static_cast<int>(neighborPos.x / CELL_SIZE);
-		int y = static_cast<int>(neighborPos.y / CELL_SIZE);
-		if (x < 0 || x >= m_screenSize.x || y < 0 || y >= m_screenSize.y) {
-			continue; // Skip out-of-bounds neighbors
-		}
-		if (m_grid[y][x].getType() == TileType::Border) {
-			/*std::cout << "collide with border\n";
-			std::cout << "x: " << x << " y: " << y << "\n";*/
-			return true;
-		}
-		std::cout << "x: " << x << " y: " << y << "\n";
-		return false;	
+	std::cout << "Checking collision at: " << x << ", " << y << std::endl;
+	if (x < 0 || x >= m_screenSize.x || y < 0 || y >= m_screenSize.y) {
+		return false; // מחוץ לגבולות => לא התנגשות
 	}
 
+	const auto& nextTile = m_grid[y][x];
+
+	// רק אם השחקן *עוד לא* נמצא על Border, ובכיוון הבא יש Border
+	if (nextTile.getType() == TileType::Border &&
+		m_grid[pos.y][pos.x].getType() != TileType::Border) {
+		std::cout << "Collision with closed area at: " << x << ", " << y << std::endl;
+		return true;
+	}
 
 	return false;
 }

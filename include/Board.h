@@ -25,7 +25,7 @@ public:
 
 	bool isInside(const int& x, const int& y) const;
 
-	bool isCollidewithclosedArea(sf::Vector2i pos) const;
+	bool isCollidewithclosedArea(sf::Vector2i pos, sf::Vector2f dir) const;
 	//bool isWalkable(const int& x, const int& y) const;
 	//
 	//void floodFillFrom(int x, int y);

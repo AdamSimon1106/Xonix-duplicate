@@ -17,7 +17,7 @@ public:
 	void setPosition(sf::Vector2f pos);
 	sf::Vector2f getStartPos() const;
 	sf::Vector2i getPosOnGrid() const;
-
+	sf::Vector2f getDirection() const;
 	void setTextur(sf::Color color);
 protected:
 	sf::Vector2f m_startPosition;

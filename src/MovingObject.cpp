@@ -49,3 +49,8 @@ sf::Vector2i MovingObject::getPosOnGrid() const
 	return sf::Vector2i(x, y);
 	
 }
+
+sf::Vector2f MovingObject::getDirection() const
+{
+	return m_direction;
+}
