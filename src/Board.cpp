@@ -116,7 +116,8 @@ void Board::closeEnclosedArea(std::vector<sf::RectangleShape> trail)
 	{
 		int x = static_cast<int>(shape.getPosition().x / CELL_SIZE);
 		int y = static_cast<int>(shape.getPosition().y / CELL_SIZE);
-		if (isInside(y, x)) {
+		if (isInside(x, y)) {
+			
 			setTileType(y, x, TileType::Filled);
 		}
 	};
