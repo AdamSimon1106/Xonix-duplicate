@@ -1,12 +1,11 @@
 #include <iostream>
-#include "WindowManager.h"
 #include <cstdlib>
 #include <ctime>
 #include "FileParser.h"
 #include "GameController.h"
 #include <filesystem>
 #include <cstdlib>  
-#include <ctime>    /
+#include <ctime>    
 int main() {
 	try {
 

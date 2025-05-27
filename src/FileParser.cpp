@@ -77,15 +77,15 @@ std::string GameData::toString()
 
 void LevelData::generatePositions(const int& count)
 {
-	this->numOfEnemies = count;
-	//TODO - make this smarter
-	for (int i = 0; i < count; i++) {
-		this->enemies.push_back(Enemy(sf::Vector2i(10, 10)));
-	}
+	//this->numOfEnemies = count;
+	////TODO - make this smarter
+	//for (int i = 0; i < count; i++) {
+	//	this->enemies.push_back(Enemy(sf::Vector2i(10, 10)));
+	//}
 }
 
 void LevelData::addEnemy(const int& x, const int& y)
 {
-	this->enemies.push_back(Enemy(sf::Vector2i(x, y)));
-	this->numOfEnemies += 1;
+	/*this->enemies.push_back(Enemy(sf::Vector2i(x, y)));
+	this->numOfEnemies += 1;*/
 }

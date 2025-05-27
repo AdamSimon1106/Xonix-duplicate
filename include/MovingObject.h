@@ -1,30 +1,14 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Macros.h"
-#include "Trail.h"
-//new
-//abstract class MovingObject <-- enemy, player;
+#include "Object.h"
 
-class MovingObject {
+class MovingObject : public Object {
 public:
-	MovingObject(const sf::Vector2i& startPosition);
-	virtual ~MovingObject() = default;
-	virtual void draw(sf::RenderWindow& window) const;
-	virtual void update(const sf::Time& deltaTime) = 0;
-	virtual void InWindow(sf::Vector2f& newPosition) = 0;
-	bool checkCollisionWithTrail(Trail& trail);
-	sf::Vector2f getPoint();
-	void setPosition(sf::Vector2f pos);
-	sf::Vector2f getStartPos() const;
-	sf::Vector2i getPosOnGrid() const;
-	sf::Vector2f getDirection() const;
-	void setTextur(sf::Color color);
+	MovingObject(sf::Vector2f pos, sf::Color color);
+	void draw(sf::RenderWindow& window) const override;
+	sf::Vector2i GetPosOnGrid(sf::Vector2f pos) const;
 protected:
-	sf::Vector2f m_startPosition;
-	sf::RectangleShape m_shape;
 	sf::Vector2f m_direction;
-	float m_speed = 100.0f;
-	bool m_collide = false;
-private:
-	
+	sf::RectangleShape m_shape;
+	float m_speed = 100.0f; 
 };

@@ -1,42 +1,27 @@
-// Created by Adam Simonov and Benny Beer, 2025
-// TODO(adam): implement Board::updatePath and commit closed area
 #pragma once
-#include "Tile.h"
-#include "FileParser.h"
-#include <vector>
-#include "Trail.h"
 #include <SFML/Graphics.hpp>
+#include "Macros.h"
+#include "Player.h"
+#include "GridManager.h"
+#include <vector>
+#include "Enemy.h" 
+#include "AreaCloser.h"
 
 
-using Pos = std::pair<int, int>;
+class Player; // Forward declaration of Player class
 
 class Board {
-private:
-	sf::Vector2i m_screenSize;
-	std::vector<std::vector<Tile>> m_grid;
-	
 public:
-	Board(sf::Vector2i screenSize);
-	void loadLevel(const LevelData& levelData);
-	int getFillPresentage() const;
+	Board();
+	void update(sf::Time deltaTime);
+	void draw(sf::RenderWindow& window);
 
-	Tile getTileAt(const int& x, const int& y) const;
-	void setTileAt(const int& x, const int& y, Tile newTile);
-
+	bool isOnFilledTile(sf::Vector2i) const;
+	void setOnClosedArea(const std::vector<sf::Vector2f>& path) const;
 	
-	void setTileType(const int& x, const int& y, TileType type);
-
-	bool isInside(const int& x, const int& y) const;
-
-	bool isCollidewithclosedArea(sf::Vector2i pos, sf::Vector2f dir) const;
-	//bool isWalkable(const int& x, const int& y) const;
-	//
-	//void floodFillFrom(int x, int y);
-	void closeEnclosedArea(std::vector<sf::RectangleShape> trail);
-	void floodFillFromBorder();
-
-
-	sf::Vector2i getSize() const;
-	void render(sf::RenderWindow& window);
-	//void reset();
+private:
+	std::vector<Enemy> m_enemies;
+	Player m_player;
+	GridManager m_gridManager;
+	AreaCloser m_areaCloser;
 };

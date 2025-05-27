@@ -1,40 +1,18 @@
-// Created by Adam Simonov and Benny Beer, 2025
-// TODO(adam): implement GameController logic for stage transitions and win conditions
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "FileParser.h"
+#include "Macros.h"
 #include "Board.h"
-#include <vector>
-#include "MovingObject.h"
-#include "Player.h"
-#include "Enemy.h"
-#include "Trail.h"
-#include "Hud.h"
 
 class GameController {
-private:
-	
-	FileParser m_parser;
-	GameData m_gameData;
-	std::vector<LevelData> m_levels;
-	
-	Trail m_trail;
-	Board m_board;
-	Player m_player;
-	std::vector<Enemy> m_enemies;
-	
-	HUD m_bar;
-
-	sf::RenderWindow m_window;
-	sf::Clock m_clock;
-	float m_countDown = 180.f;
-	int m_currentLevel = 0;
 public:
 	GameController();
-	
-	void loadLevel();
-	void render();
 	void run();
-	void processEvents();
+	void handleEvents();
 	void update();
+	void renderGame();
+
+private:
+	sf::RenderWindow m_window;
+	Board m_board;
+	sf::Clock m_clock;
 };

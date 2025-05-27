@@ -4,13 +4,25 @@
 #include <SFML/Graphics.hpp>
 #include "MovingObject.h"
 
+class Board;
+
+enum  class Direction
+{
+	RIGHT,
+	LEFT,
+	DOWN,
+	UP
+};
 
 class Enemy : public MovingObject{
 public:
-	Enemy(const sf::Vector2i& startPosition);
-	void update(const sf::Time& deltaTime);
-	void InWindow(sf::Vector2f& newPosition);
+	Enemy(const sf::Vector2f& startPosition, const Board& board);
+	void update(sf::Time deltaTime) override;
+	void InWater(sf::Vector2f& newPosition);
+	void setInWindow(sf::Vector2f& newPosition);
 	void setDirection();
 private:
+	Board* m_board = nullptr;
+	Direction m_directionType;
 	
 };

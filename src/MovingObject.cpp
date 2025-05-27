@@ -1,11 +1,11 @@
 #include "MovingObject.h"
-//new
-MovingObject::MovingObject(const sf::Vector2i& startPosition)
-	:m_startPosition(startPosition.x, startPosition.y), m_direction(0, 0)
-{
-	m_shape.setSize(sf::Vector2f(CELL_SIZE, CELL_SIZE));
 
-	m_shape.setPosition(m_startPosition);
+MovingObject::MovingObject(sf::Vector2f pos, sf::Color color)
+	:Object(pos)
+{
+	m_shape.setPosition(pos);
+	m_shape.setFillColor(color);
+	m_shape.setSize(sf::Vector2f(CELL_SIZE, CELL_SIZE));
 }
 
 void MovingObject::draw(sf::RenderWindow& window) const
@@ -13,44 +13,7 @@ void MovingObject::draw(sf::RenderWindow& window) const
 	window.draw(m_shape);
 }
 
-void MovingObject::setTextur(sf::Color color)
+sf::Vector2i MovingObject::GetPosOnGrid(sf::Vector2f pos) const
 {
-	m_shape.setFillColor(color);
-}
-
-void MovingObject::setPosition(sf::Vector2f pos)
-{
-	m_shape.setPosition(pos);
-}
-
-bool MovingObject::checkCollisionWithTrail(Trail& trail)
-{
-	m_collide = trail.checkColistions(m_shape);
-	return m_collide;
-}
-
-
-sf::Vector2f MovingObject::getPoint()
-{
-	return m_shape.getPosition();
-}
-
-sf::Vector2f MovingObject::getStartPos() const
-{
-	return m_startPosition;
-}
-
-sf::Vector2i MovingObject::getPosOnGrid() const
-{
-	sf::Vector2f pos = m_shape.getPosition();
-	int x = static_cast<int>(pos.x / CELL_SIZE);
-	int y = static_cast<int>(pos.y / CELL_SIZE);
-
-	return sf::Vector2i(x, y);
-	
-}
-
-sf::Vector2f MovingObject::getDirection() const
-{
-	return m_direction;
+	return sf::Vector2i(pos.x/CELL_SIZE, pos.y/CELL_SIZE);
 }

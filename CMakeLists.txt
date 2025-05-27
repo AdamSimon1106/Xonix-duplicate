@@ -19,8 +19,8 @@ add_executable (${CMAKE_PROJECT_NAME}
         include/Enemy.h
         src/Hud.cpp
         include/Hud.h
-        src/WindowManager.cpp
-        include/WindowManager.h
+        
+        
         include/Tile.h
         src/Tile.cpp)
 
