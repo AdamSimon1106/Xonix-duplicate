@@ -16,11 +16,13 @@ Board::Board()
 
 void Board::update(sf::Time deltaTime)
 {
+	
 	m_player.update(deltaTime);
 	for (auto& enemy : m_enemies)
 	{
 		//enemy.update(deltaTime);
 	}
+	checkColisions();
 }
 
 void Board::draw(sf::RenderWindow& window)
@@ -45,6 +47,24 @@ void Board::setOnClosedArea(const std::vector<sf::Vector2f>& path) const
 	if (path.size() < 3) return;
 	
 	
+}
+
+void Board::checkColisions()
+{
+	for (auto& enemy : m_enemies)
+	{
+		collied(m_player, enemy);
+	}
+}
+
+void Board::collied(Object& obj1, Object& obj2)
+{
+	Player* player = dynamic_cast<Player*>(&obj1);
+	Enemy* enemy = dynamic_cast<Enemy*>(&obj2);
+
+	if (player && enemy) {
+		player->checkCollisions(*enemy); 
+	}
 }
 
 

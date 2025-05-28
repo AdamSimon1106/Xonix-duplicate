@@ -17,3 +17,8 @@ sf::Vector2i MovingObject::GetPosOnGrid(sf::Vector2f pos) const
 {
 	return sf::Vector2i(pos.x/CELL_SIZE, pos.y/CELL_SIZE);
 }
+
+sf::RectangleShape MovingObject::getShape() const
+{
+	return m_shape; 
+}

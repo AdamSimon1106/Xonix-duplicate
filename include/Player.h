@@ -1,6 +1,7 @@
 #pragma once
 #include "MovingObject.h"
 #include "Trail.h"
+#include "Enemy.h"
 
 
 class Board; // Forward declaration
@@ -13,7 +14,10 @@ public:
 	void setDirectionByInput(); //handle input
 	void move(sf::Vector2f moveDelta);
 	void draw(sf::RenderWindow& window) const override;
-	
+
+	bool checkCollisions(Enemy& enemy);
+	void handleCollisions();
+	void resetPosition();
 private:
 	void InWindow(sf::Vector2f& newPosition);
 	int m_lives;

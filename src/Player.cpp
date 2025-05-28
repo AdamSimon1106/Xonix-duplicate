@@ -104,4 +104,33 @@ void Player::draw(sf::RenderWindow& window) const
 
 
 
+bool Player::checkCollisions(Enemy& enemy)
+{
+	if (m_shape.getGlobalBounds().intersects(enemy.getShape().getGlobalBounds())) {
+		std::cout << "Collision with enemy detected!" << std::endl;
+		handleCollisions();
+		return true;
+	}
+	if (m_trail.checkCollisions(enemy)) {
+		std::cout << "Collision with trail detected!" << std::endl;
+		handleCollisions();
+		return true;
+	}
+}
+
+void Player::handleCollisions()
+{
+	m_trail.clear();
+	m_lives--;
+	resetPosition();
+}
+
+void Player::resetPosition()
+{
+	m_position = m_startPosition;
+	m_shape.setPosition(m_startPosition);
+}
+
+
+
 

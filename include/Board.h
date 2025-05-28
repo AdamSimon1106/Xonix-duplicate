@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "GridManager.h"
 #include <vector>
+#include "Object.h"
 #include "Enemy.h" 
 #include "AreaCloser.h"
 
@@ -18,6 +19,9 @@ public:
 
 	bool isOnFilledTile(sf::Vector2i) const;
 	void setOnClosedArea(const std::vector<sf::Vector2f>& path) const;
+
+	void checkColisions();
+	void collied(Object& obj1, Object& obj2);
 	
 private:
 	std::vector<Enemy> m_enemies;

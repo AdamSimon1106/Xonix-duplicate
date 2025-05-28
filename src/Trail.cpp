@@ -66,6 +66,27 @@ std::vector<sf::Vector2f> Trail::getPath() const
 	return m_path;
 }
 
+bool Trail::checkCollisions(MovingObject& obj) 
+{
+	sf::FloatRect objBounds = obj.getShape().getGlobalBounds();
+	for (const auto& point : m_path)
+	{
+		sf::FloatRect pointBounds(point.x, point.y, CELL_SIZE, CELL_SIZE);
+		if (objBounds.intersects(pointBounds))
+		{
+			handleCollision();
+			return true; 
+		}
+	}
+	return false; 
+
+}
+
+void Trail::handleCollision()
+{
+	m_path.clear(); 
+}
+
 
 
 
