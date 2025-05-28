@@ -45,6 +45,25 @@ void GridManager::draw(sf::RenderWindow& window)
 	}
 }
 
+sf::Vector2i GridManager::getPosOnGrid(sf::Vector2f pos) const
+{
+	return sf::Vector2i(pos.x / CELL_SIZE, pos.y / CELL_SIZE);
+}
+
+Tile& GridManager::operator()(sf::Vector2i tilePos)
+{
+	if (isInGrid(tilePos))
+		return m_grid[tilePos.y][tilePos.x];
+}
+
+bool GridManager::isInGrid(sf::Vector2i pos)
+{
+	if(pos.x < 0 || pos.x >= m_width || pos.y < 0 || pos.y >= m_height)
+		return false;
+
+	return true;
+}
+
 bool GridManager::isOnFilledTile(sf::Vector2i point) const
 {
 	return m_grid[point.y][point.x].getType() == TileType::Filled;

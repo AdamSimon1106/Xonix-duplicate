@@ -18,7 +18,7 @@ public:
 	void draw(sf::RenderWindow& window);
 
 	bool isOnFilledTile(sf::Vector2i) const;
-	void setOnClosedArea(const std::vector<sf::Vector2f>& path) const;
+	void setOnClosedArea(const std::vector<sf::Vector2f>& path) ;
 
 	void checkColisions();
 	void collied(Object& obj1, Object& obj2);

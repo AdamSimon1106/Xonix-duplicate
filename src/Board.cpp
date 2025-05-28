@@ -20,7 +20,7 @@ void Board::update(sf::Time deltaTime)
 	m_player.update(deltaTime);
 	for (auto& enemy : m_enemies)
 	{
-		//enemy.update(deltaTime);
+		enemy.update(deltaTime);
 	}
 	checkColisions();
 }
@@ -42,10 +42,10 @@ bool Board::isOnFilledTile(sf::Vector2i point) const
 	return m_gridManager.isOnFilledTile(point);
 }
 
-void Board::setOnClosedArea(const std::vector<sf::Vector2f>& path) const
+void Board::setOnClosedArea(const std::vector<sf::Vector2f>& path) 
 {
 	if (path.size() < 3) return;
-	//m_areaCloser.fillArea(path);
+	m_areaCloser.fillArea(path, m_enemies);
 	
 	
 }
