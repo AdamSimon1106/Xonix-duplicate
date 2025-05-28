@@ -15,7 +15,7 @@ struct HUDdata {
 
 class HUD {
 public:
-    HUD();
+    HUD(sf::Vector2f screenSize);
 
     void update(const HUDdata& data);
     void draw(sf::RenderWindow& window);

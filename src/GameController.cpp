@@ -6,7 +6,7 @@
 #include "iostream"
 
 GameController::GameController() 
-	:m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Xonix") 
+	:m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Xonix"), m_hud((sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)))
 {
 }
 
@@ -46,12 +46,21 @@ void GameController::update()
 	//colisions
 	sf::Time deltaTime = m_clock.restart();
 	m_board.update(deltaTime);
+
+	HUDdata barData = {
+		m_board.getScore(),
+		m_board.getLives(),
+		m_board.getTime(),
+		m_board.getPercentage()
+	};
+	m_hud.update(barData);
 }
 
 void GameController::renderGame()
 {
 	m_window.clear();
 	m_board.draw(m_window);
+	m_hud.draw(m_window);
 	m_window.display();
 }
 

@@ -45,7 +45,7 @@ bool Board::isOnFilledTile(sf::Vector2i point) const
 void Board::setOnClosedArea(const std::vector<sf::Vector2f>& path) const
 {
 	if (path.size() < 3) return;
-	m_areaCloser.fillArea(path);
+	//m_areaCloser.fillArea(path);
 	
 	
 }
@@ -66,6 +66,26 @@ void Board::collied(Object& obj1, Object& obj2)
 	if (player && enemy) {
 		player->checkCollisions(*enemy); 
 	}
+}
+
+int Board::getScore() const
+{
+	return m_player.getScore();
+}
+
+int Board::getLives() const
+{
+	return m_player.getLives();
+}
+
+float Board::getTime() const
+{
+	return 0 ;
+}
+
+float Board::getPercentage() const
+{
+	return 0.0f;
 }
 
 

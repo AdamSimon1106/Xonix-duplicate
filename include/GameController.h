@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Macros.h"
 #include "Board.h"
+#include "Hud.h"
 
 class GameController {
 public:
@@ -15,4 +16,5 @@ private:
 	sf::RenderWindow m_window;
 	Board m_board;
 	sf::Clock m_clock;
+	HUD m_hud;
 };

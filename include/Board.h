@@ -23,6 +23,11 @@ public:
 	void checkColisions();
 	void collied(Object& obj1, Object& obj2);
 	
+
+	int getScore() const;
+	int	getLives() const;
+	float getTime() const;
+	float getPercentage() const;
 private:
 	std::vector<Enemy> m_enemies;
 	Player m_player;

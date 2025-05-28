@@ -18,9 +18,13 @@ public:
 	bool checkCollisions(Enemy& enemy);
 	void handleCollisions();
 	void resetPosition();
+
+	int getScore() const;
+	int getLives() const; 
 private:
 	void InWindow(sf::Vector2f& newPosition);
 	int m_lives;
+	int m_score = 0;
 	sf::Vector2f m_startPosition;
 	sf::Vector2f m_oldPosition;
 	

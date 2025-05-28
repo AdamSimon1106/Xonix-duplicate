@@ -3,7 +3,8 @@
 #include "../include/Hud.h"
 
 
-HUD::HUD() {
+HUD::HUD(sf::Vector2f screenSize)
+{
     m_font.loadFromFile("C:/Windows/Fonts/arial.ttf");
     auto setupText = [&](sf::Text& text, float x) {
         text.setFont(m_font);
@@ -12,16 +13,11 @@ HUD::HUD() {
         text.setPosition(x, 10);
         };
 
-    setupText(m_scoreText, 180);
-    setupText(m_livesText, 290);
-    setupText(m_timerText, 400);
-    setupText(m_areaText, 530);
+    setupText(m_scoreText, screenSize.x/8);
+    setupText(m_livesText, screenSize.x / 8 + 130);
+    setupText(m_timerText, screenSize.x / 8 + 260);
+    setupText(m_areaText, screenSize.x / 8 + 410);
 
-    m_border.setSize(sf::Vector2f(510, 30));
-    m_border.setPosition(150, 10);
-    m_border.setFillColor(sf::Color(0, 0, 0, 150));
-    m_border.setOutlineColor(sf::Color::White);
-    m_border.setOutlineThickness(2.f);
 }
 
 void HUD::update(const HUDdata& data) {

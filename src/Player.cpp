@@ -131,6 +131,15 @@ void Player::resetPosition()
 	m_shape.setPosition(m_startPosition);
 }
 
+int Player::getScore() const
+{
+	return m_score;
+}
+
+int Player::getLives() const
+{
+	return m_lives;
+}
 
 
 
