@@ -30,20 +30,20 @@ void Player::update(sf::Time deltaTime)
 	if (!onFilledTile && wasOnFilledTile)
 	{
 		m_trail.addPoint(m_position);
-		std::cout << "Player is walking on water from filled tile" << std::endl;
+		//std::cout << "Player is walking on water from filled tile" << std::endl;
 	}
 	//closed area
 	else if (!wasOnFilledTile && onFilledTile)
 	{
 		m_board->setOnClosedArea(m_trail.getPath());
-		std::cout << "Player  closed area" << std::endl;
+		//std::cout << "Player  closed area" << std::endl;
 		m_trail.clear(); 
 	}
 	//walking on water from water
 	else if (!onFilledTile && isMoving)
 	{
 		m_trail.addPoint(m_position);
-		std::cout << "Player is walking on water" << std::endl;
+		//std::cout << "Player is walking on water" << std::endl;
 	}
 
 

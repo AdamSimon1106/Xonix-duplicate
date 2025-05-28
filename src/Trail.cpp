@@ -36,7 +36,7 @@ void Trail::addPoint(const sf::Vector2f& point)
 	{
 		return; // Do not add the same point consecutively
 	}
-	if (distanceToLastPoint(point) < CELL_SIZE * 0.5f) // Assuming distance is a method that calculates the distance between two points
+	if (distanceToLastPoint(point) < CELL_SIZE * 0.2f) // Assuming distance is a method that calculates the distance between two points
 	{
 		return; // Do not add point if it's too close to the last point
 	}

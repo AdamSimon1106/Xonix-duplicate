@@ -14,22 +14,22 @@ void GridManager::initializeGrid()
 	for (int x = 0; x < m_width; ++x)
 	{
 		m_grid[0][x].setPosition(x, 0);
-		m_grid[0][x].setType(TileType::Filled);
+		m_grid[0][x].setType(TileType::Border);
 		m_grid[0][x].setColor(sf::Color::Blue);
 
 		m_grid[m_width - 1][x].setPosition(x, m_width - 1);
-		m_grid[m_width - 1][x].setType(TileType::Filled);
+		m_grid[m_width - 1][x].setType(TileType::Border);
 		m_grid[m_width - 1][x].setColor(sf::Color::Blue);
 	}
 
 	for (int y = 0; y < m_height; ++y)
 	{
 		m_grid[y][0].setPosition(0, y);
-		m_grid[y][0].setType(TileType::Filled);
+		m_grid[y][0].setType(TileType::Border);
 		m_grid[y][0].setColor(sf::Color::Blue);
 
 		m_grid[y][m_height - 1].setPosition(m_height - 1, y);
-		m_grid[y][m_height - 1].setType(TileType::Filled);
+		m_grid[y][m_height - 1].setType(TileType::Border);
 		m_grid[y][m_height - 1].setColor(sf::Color::Blue);
 	}
 }
@@ -66,5 +66,6 @@ bool GridManager::isInGrid(sf::Vector2i pos)
 
 bool GridManager::isOnFilledTile(sf::Vector2i point) const
 {
-	return m_grid[point.y][point.x].getType() == TileType::Filled;
+	return m_grid[point.y][point.x].getType() == TileType::Filled || m_grid[point.y][point.x].getType() == TileType::Border
+		;
 }

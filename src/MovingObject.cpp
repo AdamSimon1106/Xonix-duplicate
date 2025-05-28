@@ -5,7 +5,7 @@ MovingObject::MovingObject(sf::Vector2f pos, sf::Color color)
 {
 	m_shape.setPosition(pos);
 	m_shape.setFillColor(color);
-	m_shape.setSize(sf::Vector2f(CELL_SIZE, CELL_SIZE));
+	m_shape.setSize(sf::Vector2f(CELL_SIZE - 2, CELL_SIZE - 2));
 }
 
 void MovingObject::draw(sf::RenderWindow& window) const

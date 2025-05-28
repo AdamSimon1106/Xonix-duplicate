@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 
 enum class TileType {
-	Empty, Filled, Temp, Enemy
+	Empty, Filled, Temp, Enemy, Border
 };
 
 class Tile {

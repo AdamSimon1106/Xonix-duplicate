@@ -18,8 +18,8 @@ class Enemy : public MovingObject{
 public:
 	Enemy(const sf::Vector2f& startPosition, const Board& board);
 	void update(sf::Time deltaTime) override;
-	void InWater(sf::Vector2f& newPosition);
-	void setInWindow(sf::Vector2f& newPosition);
+	void InWater(sf::Vector2f& newPosition, sf::Time deltaTime);
+	
 	void setDirection();
 private:
 	Board* m_board = nullptr;

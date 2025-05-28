@@ -18,78 +18,40 @@ void Enemy::update(sf::Time deltaTime)
 	);
 
 	sf::Vector2f newPosition = m_shape.getPosition() + moveDelta;
-	/*if (m_board->isOnFilledTile(GetPosOnGrid(newPosition)))
-	{
-		InWater(newPosition);
-	}*/
-	//else
-	{
-		setInWindow(newPosition);
-	}
-	
+	//setInWindow(newPosition);
+	InWater(newPosition, deltaTime);     // ננסה להפוך כיוון אם נכנס ל-Filled
+	 // נוודא שהוא לא חורג מהמסך
+
 	m_shape.setPosition(newPosition);
-
 }
 
-void Enemy::InWater(sf::Vector2f& newPosition)
+
+void Enemy::InWater(sf::Vector2f& newPosition, sf::Time deltaTime)
 {
-	sf::FloatRect bounds = m_shape.getGlobalBounds();
+	sf::Vector2i gridPos = GetPosOnGrid(newPosition);
 
-	if (m_board->isOnFilledTile(GetPosOnGrid(newPosition)))
-	{
-		// If the new position is on a filled tile, reverse the direction
-		switch (m_directionType)
-		{
-		case Direction::RIGHT:
-							
-			m_direction = sf::Vector2f(-1, 1);		m_directionType = Direction::LEFT;
-			break;
-		case Direction::LEFT:
-			m_direction = sf::Vector2f(1, 1);		m_directionType = Direction::RIGHT;	
-			break;
-		case Direction::DOWN:
-			m_direction = sf::Vector2f(1, -1);		 m_directionType = Direction::UP;
-			break;
-		case Direction::UP:
-			m_direction = sf::Vector2f(-1, -1);		 m_directionType = Direction::DOWN;
-			break;
-		default:
-			break;
-		}
-		newPosition.x *= m_direction.x;
-		newPosition.y *= m_direction.y;
-	}
-	
-}
+	sf::Vector2i nextX = gridPos + sf::Vector2i((int)m_direction.x, 0);
+	sf::Vector2i nextY = gridPos + sf::Vector2i(0, (int)m_direction.y);
 
-void Enemy::setInWindow(sf::Vector2f& newPosition)
-{
-	sf::FloatRect bounds = m_shape.getGlobalBounds();
+	bool hitX = false, hitY = false;
 
-	if (newPosition.x < 0) {
-		newPosition.x = 0;
-		m_direction.x *= -1; // Reverse direction
-		m_directionType = (m_directionType == Direction::RIGHT) ? Direction::LEFT : Direction::RIGHT; // Change direction type
-		
-	}
-	if (newPosition.y < 0) {
-		newPosition.y = 0;
-		m_direction.y *= -1; // Reverse direction
-		m_directionType = (m_directionType == Direction::UP) ? Direction::DOWN : Direction::UP; // Change direction type
-		
-	}
-	if (newPosition.x + bounds.width > WINDOW_WIDTH) { // Assuming window width is 800
-		newPosition.x = WINDOW_WIDTH - bounds.width;
-		m_direction.x *= -1; // Reverse direction
-		m_directionType = (m_directionType == Direction::RIGHT) ? Direction::LEFT : Direction::RIGHT; // Change direction type
-		
-	}
-	if (newPosition.y + bounds.height > WINDOW_HEIGHT) { // Assuming window height is 600
-		newPosition.y = WINDOW_HEIGHT - bounds.height;
-		m_direction.y *= -1; // Reverse direction
-		m_directionType = (m_directionType == Direction::UP) ? Direction::DOWN : Direction::UP; // Change direction type
-		
-	}
+	if (/*!m_board->is(nextX)*/ /*||*/ m_board->isOnFilledTile(nextX))
+		hitX = true;
+
+	if (/*!m_board->isInBounds(nextY) ||*/ m_board->isOnFilledTile(nextY))
+		hitY = true;
+
+	if (hitX)
+		m_direction.x *= -1;
+	if (hitY)
+		m_direction.y *= -1;
+
+
+	sf::Vector2f moveDelta(
+		m_direction.x * m_speed * deltaTime.asSeconds(),
+		m_direction.y * m_speed * deltaTime.asSeconds()
+	);
+	newPosition = m_shape.getPosition() + moveDelta;
 }
 
 void Enemy::setDirection()
