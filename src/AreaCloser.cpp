@@ -7,10 +7,7 @@ AreaCloser::AreaCloser(GridManager& gridManager)
 {
 }
 // todo: implement this function
-bool AreaCloser::isclosingArea(const std::vector<sf::Vector2f>& path, std::vector<Enemy> enemys)
-{
-	return false;
-}
+
 //maybe not needed
 bool AreaCloser::containEnemy(sf::Vector2f edge1, sf::Vector2f edge2, const std::vector<Enemy>& enemys) const
 {

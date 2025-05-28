@@ -45,6 +45,7 @@ bool Board::isOnFilledTile(sf::Vector2i point) const
 void Board::setOnClosedArea(const std::vector<sf::Vector2f>& path) const
 {
 	if (path.size() < 3) return;
+	m_areaCloser.fillArea(path);
 	
 	
 }
