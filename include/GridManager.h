@@ -14,7 +14,7 @@ public:
 	bool isInGrid(sf::Vector2i pos);
 	bool isOnFilledTile(sf::Vector2i point) const; 
 	
-
+	
 	int getWidth() const { return m_width; }
 	int getHeight() const { return m_height; }
 private:

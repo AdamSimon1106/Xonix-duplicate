@@ -51,7 +51,7 @@ void GameController::update()
 		m_board.getScore(),
 		m_board.getLives(),
 		m_board.getTime(),
-		m_board.getPercentage()
+		m_board.getPercentageFilled(),
 	};
 	m_hud.update(barData);
 }

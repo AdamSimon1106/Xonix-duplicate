@@ -1,7 +1,7 @@
 #include "AreaCloser.h"
 #include "Tile.h"
 #include <iostream>
-#include <stack>
+#include <queue>
 
 AreaCloser::AreaCloser(GridManager& gridManager)
 	: m_gridMannager(gridManager)
@@ -19,9 +19,13 @@ void AreaCloser::fillArea(const std::vector<sf::Vector2f>& path, const std::vect
 		for (int x = 0; x < m_gridMannager.getWidth(); ++x) {
 			Tile& tile = m_gridMannager(sf::Vector2i(x, y));
             if (tile.getType() != TileType::Temp) {
+                if (tile.getType() != TileType::Filled)
+                    incrementFilledPercentage();
                 tile.setType(TileType::Filled);
                 tile.setColor(sf::Color::Blue);
                 tile.setPosition(x, y);
+               
+                
             }
             else if (tile.getType() == TileType::Temp) {
                 tile.setType(TileType::Empty);
@@ -38,23 +42,24 @@ void AreaCloser::floodFill(sf::Vector2f inerPos) {
 
     if (!(m_gridMannager.isInGrid(gridPos))) return;
     if (m_gridMannager(gridPos).getType() == TileType::Filled) return;
-	if (m_gridMannager(gridPos).getType() == TileType::Temp) return;
+    
+    if (m_gridMannager(gridPos).getType() == TileType::Temp) return; 
 
-    std::stack<std::pair<int, int>> stack;
-    stack.push({ startCol, startRow });
+    std::queue<std::pair<int, int>> q;
+    q.push({ startCol, startRow });
 
-    while (!stack.empty()) {
-        auto [row, col] = stack.top();
-        stack.pop();
+    while (!q.empty()) {
+        auto [row, col] = q.front(); 
+        q.pop();
 
         Tile& tile = m_gridMannager(sf::Vector2i(row, col));
         if (tile.getType() == TileType::Filled || tile.getType() == TileType::Temp || tile.getType() == TileType::Border)
             continue;
 
-        tile.setType(TileType::Temp);
+        tile.setType(TileType::Temp); 
 
-        const int dr[4] = { -1, 1, 0, 0 };
-        const int dc[4] = { 0, 0, -1, 1 };
+        const int dr[4] = { -1, 1, 0, 0 }; 
+        const int dc[4] = { 0, 0, -1, 1 }; 
 
         for (int dir = 0; dir < 4; ++dir) {
             int newRow = row + dr[dir];
@@ -63,9 +68,11 @@ void AreaCloser::floodFill(sf::Vector2f inerPos) {
             if (!m_gridMannager.isInGrid(sf::Vector2i(newCol, newRow))) continue;
 
             Tile& neighbor = m_gridMannager(sf::Vector2i(newRow, newCol));
+
             if ((neighbor.getType() != TileType::Filled &&
-                neighbor.getType() != TileType::Temp)) {
-                stack.push({ newRow, newCol });
+                neighbor.getType() != TileType::Temp &&
+                neighbor.getType() != TileType::Border)) { 
+                q.push({ newRow, newCol });
             }
         }
     }
@@ -115,4 +122,20 @@ void AreaCloser::drawLineOnGrid(sf::Vector2i from, sf::Vector2i to)
     }
 
 }
+
+void AreaCloser::incrementFilledPercentage()
+{
+    float width = (m_gridMannager.getWidth());
+    float height = (m_gridMannager.getHeight());
+    float totalTiles = (height * width) - (2 * width) - (2 * height) - ENEMY_COUNT - 1;
+       
+    if (totalTiles > 0.f)
+        m_percentFilled += (100.0f / totalTiles);
+}
+
+float AreaCloser::getPercentFilled() const
+{
+    return m_percentFilled;
+}
+
 

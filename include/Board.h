@@ -22,15 +22,19 @@ public:
 
 	void checkColisions();
 	void collied(Object& obj1, Object& obj2);
-	
+	void updateTimer();
 
 	int getScore() const;
 	int	getLives() const;
+	float getPercentageFilled() const;
 	float getTime() const;
-	float getPercentage() const;
+	
 private:
 	std::vector<Enemy> m_enemies;
 	Player m_player;
 	GridManager m_gridManager;
 	AreaCloser m_areaCloser;
+
+	sf::Clock m_clock;
+	float m_countDownTime = 180.f;
 };

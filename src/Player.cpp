@@ -7,10 +7,12 @@
 Player::Player(sf::Vector2f pos, int lives, const Board& board, sf::Color color)
 	:MovingObject(pos, color), m_lives(lives), m_startPosition(pos), m_board(const_cast<Board*>(&board))
 {
+	m_shape.setOrigin(0, 0);
 }
 
 void Player::update(sf::Time deltaTime)
 {
+	
 	m_oldPosition = m_position;
 	setDirectionByInput();
 
@@ -21,7 +23,7 @@ void Player::update(sf::Time deltaTime)
 
 
 	move(moveDelta);
-
+	
 	bool isMoving = (m_direction.x != 0 || m_direction.y != 0);
 	bool onFilledTile = m_board->isOnFilledTile(GetPosOnGrid(m_position));
 	bool wasOnFilledTile = m_board->isOnFilledTile(GetPosOnGrid(m_oldPosition));
@@ -36,7 +38,7 @@ void Player::update(sf::Time deltaTime)
 	else if (!wasOnFilledTile && onFilledTile)
 	{
 		m_board->setOnClosedArea(m_trail.getPath());
-		//std::cout << "Player  closed area" << std::endl;
+		m_score += m_board->getPercentageFilled() / REWARD;
 		m_trail.clear(); 
 	}
 	//walking on water from water
@@ -45,6 +47,7 @@ void Player::update(sf::Time deltaTime)
 		m_trail.addPoint(m_position);
 		//std::cout << "Player is walking on water" << std::endl;
 	}
+	
 
 
 }
@@ -102,17 +105,18 @@ void Player::draw(sf::RenderWindow& window) const
 	MovingObject::draw(window);
 }
 
-
+bool Player::checkColisionsWithTrail()
+{
+	return m_trail.checkCollisions(*this);
+}
 
 bool Player::checkCollisions(Enemy& enemy)
 {
 	if (m_shape.getGlobalBounds().intersects(enemy.getShape().getGlobalBounds())) {
-		std::cout << "Collision with enemy detected!" << std::endl;
 		handleCollisions();
 		return true;
 	}
 	if (m_trail.checkCollisions(enemy)) {
-		std::cout << "Collision with trail detected!" << std::endl;
 		handleCollisions();
 		return true;
 	}

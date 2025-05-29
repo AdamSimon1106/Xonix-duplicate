@@ -10,3 +10,4 @@ const int COLS = 50;
 const int WINDOW_WIDTH = COLS * CELL_SIZE;
 const int WINDOW_HEIGHT = ROWS * CELL_SIZE;
 const int ENEMY_COUNT = 3;
+const int REWARD = 4;

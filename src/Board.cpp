@@ -16,11 +16,12 @@ Board::Board()
 
 void Board::update(sf::Time deltaTime)
 {
+	updateTimer();
 	
 	m_player.update(deltaTime);
 	for (auto& enemy : m_enemies)
 	{
-		enemy.update(deltaTime);
+		//enemy.update(deltaTime);
 	}
 	checkColisions();
 }
@@ -68,6 +69,18 @@ void Board::collied(Object& obj1, Object& obj2)
 	}
 }
 
+void Board::updateTimer()
+{
+	sf::Time elapsed = m_clock.restart(); // כמה זמן עבר מאז העדכון האחרון
+	m_countDownTime -= elapsed.asSeconds();
+
+	if (m_countDownTime <= 0)
+	{
+		// הזמן נגמר! טיפול בכך:
+		 // או סיום המשחק
+	}
+}
+
 int Board::getScore() const
 {
 	return m_player.getScore();
@@ -78,14 +91,15 @@ int Board::getLives() const
 	return m_player.getLives();
 }
 
-float Board::getTime() const
+float Board::getPercentageFilled() const
 {
-	return 0 ;
+	return m_areaCloser.getPercentFilled();
 }
 
-float Board::getPercentage() const
+float Board::getTime() const
 {
-	return 0.0f;
+	return m_countDownTime ;
 }
+
 
 

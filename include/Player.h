@@ -15,6 +15,7 @@ public:
 	void move(sf::Vector2f moveDelta);
 	void draw(sf::RenderWindow& window) const override;
 
+	bool checkColisionsWithTrail();
 	bool checkCollisions(Enemy& enemy);
 	void handleCollisions();
 	void resetPosition();

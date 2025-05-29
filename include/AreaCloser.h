@@ -11,7 +11,9 @@ public:
 	void floodFill(sf::Vector2f inerPos);
 	void setTrailOnGrid(const std::vector<sf::Vector2f>& path);
 	void drawLineOnGrid(sf::Vector2i from, sf::Vector2i to);
-	
+	void incrementFilledPercentage();
+	float getPercentFilled() const; 
 private:
 	GridManager& m_gridMannager;
+	float m_percentFilled = 0.0f;
 };

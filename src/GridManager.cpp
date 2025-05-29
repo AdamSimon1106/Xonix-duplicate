@@ -69,3 +69,4 @@ bool GridManager::isOnFilledTile(sf::Vector2i point) const
 	return m_grid[point.y][point.x].getType() == TileType::Filled || m_grid[point.y][point.x].getType() == TileType::Border
 		;
 }
+

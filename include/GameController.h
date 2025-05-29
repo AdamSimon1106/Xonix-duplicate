@@ -12,6 +12,7 @@ public:
 	void update();
 	void renderGame();
 
+
 private:
 	sf::RenderWindow m_window;
 	Board m_board;

@@ -4,6 +4,7 @@ MovingObject::MovingObject(sf::Vector2f pos, sf::Color color)
 	:Object(pos)
 {
 	m_shape.setPosition(pos);
+	m_shape.setOrigin(CELL_SIZE/2.f, CELL_SIZE/2.f);
 	m_shape.setFillColor(color);
 	m_shape.setSize(sf::Vector2f(CELL_SIZE - 2, CELL_SIZE - 2));
 }
