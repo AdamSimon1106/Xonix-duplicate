@@ -7,6 +7,7 @@ AreaCloser::AreaCloser(GridManager& gridManager)
 	: m_gridMannager(gridManager)
 {
 }
+
 void AreaCloser::fillArea(const std::vector<sf::Vector2f>& path, const std::vector<Enemy> enemies)
 {
 	setTrailOnGrid(path);
@@ -72,21 +73,49 @@ void AreaCloser::floodFill(sf::Vector2f inerPos) {
         }
     }
 }
-
-
 //TO DO check diferences between points
 void AreaCloser::setTrailOnGrid(const std::vector<sf::Vector2f>& path)
 {
-	for (const auto& point : path)
-	{
-		sf::Vector2i trailPoint(m_gridMannager.getPosOnGrid(point));
-		m_gridMannager(trailPoint).setType(TileType::Filled);
-		m_gridMannager(trailPoint).setColor(sf::Color::Blue);
-		m_gridMannager(trailPoint).setPosition(trailPoint.x, trailPoint.y);
+    for (size_t i = 1; i < path.size(); ++i)
+    {
+        sf::Vector2i p0 = m_gridMannager.getPosOnGrid(path[i - 1]);
+        sf::Vector2i p1 = m_gridMannager.getPosOnGrid(path[i]);
 
-	}
+        drawLineOnGrid(p0, p1);
+    }
+
 
 }
-// todo: implement this function
 
-//maybe not needed
+void AreaCloser::drawLineOnGrid(sf::Vector2i from, sf::Vector2i to)
+{
+    int deltaX = abs(to.x - from.x);
+    int deltaY = abs(to.y - from.y);
+
+    int stepX = (from.x < to.x) ? 1 : -1;
+    int stepY = (from.y < to.y) ? 1 : -1;
+
+    int error = deltaX - deltaY;
+
+    while (true) {
+        m_gridMannager(from).setType(TileType::Filled);
+        m_gridMannager(from).setColor(sf::Color::Blue);
+        m_gridMannager(from).setPosition(from.x, from.y);
+
+        if (from == to) break;
+
+        int doubleError = 2 * error;
+
+        if (doubleError > -deltaY) {
+            error -= deltaY;
+            from.x += stepX;
+        }
+
+        if (doubleError < deltaX) {
+            error += deltaX;
+            from.y += stepY;
+        }
+    }
+
+}
+

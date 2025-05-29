@@ -12,12 +12,12 @@ Enemy::Enemy(const sf::Vector2f& startPosition, const Board& board)
 
 void Enemy::update(sf::Time deltaTime)
 {
-	sf::Vector2f moveDelta(
+	/*sf::Vector2f moveDelta(
 		m_direction.x * m_speed * deltaTime.asSeconds(),
 		m_direction.y * m_speed * deltaTime.asSeconds()
-	);
+	);*/
 
-	sf::Vector2f newPosition = m_shape.getPosition() + moveDelta;
+	sf::Vector2f newPosition = m_shape.getPosition(); //+ moveDelta;
 	//setInWindow(newPosition);
 	InWater(newPosition, deltaTime);     // ננסה להפוך כיוון אם נכנס ל-Filled
 	 // נוודא שהוא לא חורג מהמסך
