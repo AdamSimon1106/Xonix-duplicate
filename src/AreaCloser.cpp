@@ -23,7 +23,6 @@ void AreaCloser::fillArea(const std::vector<sf::Vector2f>& path, const std::vect
                 tile.setColor(sf::Color::Blue);
                 tile.setPosition(x, y);
             }
-            // זה לא מתבצע לעולם בגלל התנאי למעלה:
             else if (tile.getType() == TileType::Temp) {
                 tile.setType(TileType::Empty);
             }
@@ -39,6 +38,7 @@ void AreaCloser::floodFill(sf::Vector2f inerPos) {
 
     if (!(m_gridMannager.isInGrid(gridPos))) return;
     if (m_gridMannager(gridPos).getType() == TileType::Filled) return;
+	if (m_gridMannager(gridPos).getType() == TileType::Temp) return;
 
     std::stack<std::pair<int, int>> stack;
     stack.push({ startCol, startRow });
@@ -53,7 +53,6 @@ void AreaCloser::floodFill(sf::Vector2f inerPos) {
 
         tile.setType(TileType::Temp);
 
-        // כיוונים: למעלה, למטה, שמאלה, ימינה
         const int dr[4] = { -1, 1, 0, 0 };
         const int dc[4] = { 0, 0, -1, 1 };
 
@@ -65,9 +64,7 @@ void AreaCloser::floodFill(sf::Vector2f inerPos) {
 
             Tile& neighbor = m_gridMannager(sf::Vector2i(newRow, newCol));
             if ((neighbor.getType() != TileType::Filled &&
-                neighbor.getType() != TileType::Temp)/*||
-                (neighbor.getType() != TileType::Border &&
-                    neighbor.getType() != TileType::Temp)*/) {
+                neighbor.getType() != TileType::Temp)) {
                 stack.push({ newRow, newCol });
             }
         }
