@@ -60,7 +60,7 @@ Tile& GridManager::operator()(sf::Vector2i tilePos)
 bool GridManager::isInGrid(sf::Vector2i pos)
 {
 	if (pos.x < 0 || pos.x >= m_width || pos.y < 0 || pos.y >= m_height)
-		throw outOfBounds(pos);
+		throw OutOfBounds(pos);
 		
 	return true;
 }

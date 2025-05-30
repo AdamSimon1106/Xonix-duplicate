@@ -18,9 +18,9 @@ public:
 	{}
 };
 
-class outOfBounds : public GameException {
+class OutOfBounds : public GameException {
 public:
-	outOfBounds(const sf::Vector2i& pos)
+	OutOfBounds(const sf::Vector2i& pos)
 		: GameException("Position (" + std::to_string(pos.x) + ", " + std::to_string(pos.y) + ") is out of bounds") {}
 };
 

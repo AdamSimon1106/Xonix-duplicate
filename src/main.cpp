@@ -18,7 +18,15 @@ int main() {
 		controller.run();
 	}
 	catch (const FileNotFound& e) {
-
+		std::cout << e.what() << '\n';
+	}
+	catch (const OutOfBounds& e)
+	{
+		std::cout << e.what() << '\n';
+	}
+	catch (const InvalidInput& e)
+	{
+		std::cout << e.what() << '\n';
 	}
 	catch (std::exception& e) {
 		std::cerr << "got: " << e.what() << std::endl;
