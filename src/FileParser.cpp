@@ -53,7 +53,7 @@ std::vector<LevelData> FileParser::parseLevelData()
 				} while (iss >> next);
 			}
 			else {
-				throw std::runtime_error("invalid level formatting");
+				throw InvalidInput(next);
 			}
 		}
 		level.numOfEnemies = count;

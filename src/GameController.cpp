@@ -10,12 +10,8 @@ GameController::GameController()
 {
 }
 
-
-
-
 void GameController::run()
 {
-	m_window.setFramerateLimit(60);
 	while (m_window.isOpen())
 	{
 		handleEvents();

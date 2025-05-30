@@ -5,7 +5,10 @@
 #include "GameController.h"
 #include <filesystem>
 #include <cstdlib>  
-#include <ctime>    
+#include <ctime>  
+#include "Exception.h"
+
+
 int main() {
 	try {
 
@@ -13,6 +16,9 @@ int main() {
 		srand(static_cast<unsigned>(std::time(nullptr)));
 		auto controller = GameController();
 		controller.run();
+	}
+	catch (const FileNotFound& e) {
+
 	}
 	catch (std::exception& e) {
 		std::cerr << "got: " << e.what() << std::endl;

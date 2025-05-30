@@ -8,6 +8,8 @@
 #include <sstream>
 #include <stdexcept>
 #include "Enemy.h"
+#include "Exception.h"
+
 //---structs---
 struct LevelData{
 	int numOfEnemies;
@@ -28,7 +30,7 @@ private:
 	std::ifstream m_file;
 public:
 	FileParser(const std::string& path) : m_file(path){
-		if (!m_file.is_open()) { throw std::runtime_error("failed to open file at " + path);}
+		if (!m_file.is_open()) { throw FileNotFound(path);}
 	}
 	GameData parseGameData();
 	std::vector<LevelData> parseLevelData();
