@@ -9,7 +9,8 @@ GameController::GameController() : m_fileParser("game_data.txt"),
 								   m_gameData(m_fileParser.parseGameData()),
 								   m_levels(m_fileParser.parseLevelData()),
 								   m_window(sf::VideoMode(m_gameData.screenSize.x * CELL_SIZE, m_gameData.screenSize.y * CELL_SIZE), "Xonix"),
-								   m_hud((sf::Vector2f(m_gameData.screenSize.x, m_gameData.screenSize.y)))
+								   m_hud((sf::Vector2f(m_gameData.screenSize.x, m_gameData.screenSize.y))),
+								   m_board(m_gameData,m_levels[0])
 {
 }
 

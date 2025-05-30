@@ -1,11 +1,15 @@
 #include "Board.h"
 #include <iostream>
 
-Board::Board()
-	: m_player(sf::Vector2f(0, 0), 3, *this), m_gridManager(COLS, ROWS), m_areaCloser(m_gridManager)
+Board::Board(GameData gameData, LevelData level) : m_gameData(gameData),
+												   m_level(level),
+									               m_player(sf::Vector2f(0, 0), m_gameData.numOfLives, *this),
+									               m_gridManager(m_gameData.screenSize.x, m_gameData.screenSize.y),
+									               m_areaCloser(m_gridManager)
 {
 	int cols = m_gridManager.getWidth();
 	int rows = m_gridManager.getHeight();
+	//TODO - generate the enemies at fileParser
 	for (int i = 0; i < ENEMY_COUNT; ++i)
 	{
 		// Initialize enemies with random positions
@@ -40,7 +44,7 @@ void Board::draw(sf::RenderWindow& window)
 
 bool Board::isOnFilledTile(sf::Vector2i point) const
 {
-	if (point.x < 0 || point.x >= COLS || point.y < 0 || point.y >= ROWS)
+	if (point.x < 0 || point.x >= m_width || point.y < 0 || point.y >= m_height)
 		return false; // Out of bounds check
 	return m_gridManager.isOnFilledTile(point);
 }
@@ -49,8 +53,6 @@ void Board::setOnClosedArea(const std::vector<sf::Vector2f>& path)
 {
 	if (path.size() < 3) return;
 	m_areaCloser.fillArea(path, m_enemies);
-	
-	
 }
 
 void Board::checkColisions()
@@ -73,13 +75,12 @@ void Board::collied(Object& obj1, Object& obj2)
 
 void Board::updateTimer()
 {
-	sf::Time elapsed = m_clock.restart(); // כמה זמן עבר מאז העדכון האחרון
+	sf::Time elapsed = m_clock.restart(); 
 	m_countDownTime -= elapsed.asSeconds();
 
 	if (m_countDownTime <= 0)
 	{
-		// הזמן נגמר! טיפול בכך:
-		 // או סיום המשחק
+	
 	}
 }
 
@@ -91,6 +92,26 @@ int Board::getScore() const
 int Board::getLives() const
 {
 	return m_player.getLives();
+}
+
+int Board::getScreenWidth() const
+{
+	return m_width * CELL_SIZE;
+}
+
+int Board::getScreenHeight() const
+{
+	return m_height * CELL_SIZE;
+}
+
+int Board::getGridWidth() const
+{
+	return m_width;
+}
+
+int Board::getGridHeight() const
+{
+	return m_height;
 }
 
 float Board::getPercentageFilled() const

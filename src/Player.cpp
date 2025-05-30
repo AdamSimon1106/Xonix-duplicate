@@ -54,18 +54,19 @@ void Player::update(sf::Time deltaTime)
 void Player::InWindow(sf::Vector2f& newPosition)
 {
 	sf::FloatRect bounds = m_shape.getGlobalBounds();
-
+	int windowWidth = m_board->getScreenWidth();
+	int windowHeight = m_board->getScreenHeight();
 	if (newPosition.x < 0) {
 		newPosition.x = 0;
 	}
 	if (newPosition.y < 0) {
 		newPosition.y = 0;
 	}
-	if (newPosition.x + bounds.width > WINDOW_WIDTH) { 
-		newPosition.x = WINDOW_WIDTH - bounds.width;
+	if (newPosition.x + bounds.width > windowWidth) { 
+		newPosition.x = windowWidth - bounds.width;
 	}
-	if (newPosition.y + bounds.height > WINDOW_HEIGHT) {
-		newPosition.y = WINDOW_HEIGHT - bounds.height;
+	if (newPosition.y + bounds.height > windowHeight) {
+		newPosition.y = windowHeight - bounds.height;
 	}
 }
 
@@ -90,7 +91,6 @@ void Player::setDirectionByInput()
 
 void Player::move(sf::Vector2f moveDelta)
 {
-
 	sf::Vector2f newPosition = m_shape.getPosition() + moveDelta;
 	InWindow(newPosition);
 	m_shape.setPosition(newPosition);

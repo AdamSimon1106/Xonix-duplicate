@@ -48,8 +48,6 @@ void Trail::clear()
 	m_path.clear();
 }
 
-
-
 float Trail::distanceToLastPoint(const sf::Vector2f& point) const
 {
 	if (m_path.empty())

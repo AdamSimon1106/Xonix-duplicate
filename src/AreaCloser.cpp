@@ -13,6 +13,7 @@ void AreaCloser::fillArea(const std::vector<sf::Vector2f>& path, const std::vect
 	setTrailOnGrid(path);
 	for (const auto& enemy : enemies)
 	{
+        std::cout << enemy.getPosition().x << " " << enemy.getPosition().y << "/n";
 		floodFill(enemy.getPosition());
 	}
 	for (int y = 0; y < m_gridMannager.getHeight(); ++y) {
@@ -21,11 +22,10 @@ void AreaCloser::fillArea(const std::vector<sf::Vector2f>& path, const std::vect
             if (tile.getType() != TileType::Temp) {
                 if (tile.getType() != TileType::Filled)
                     incrementFilledPercentage();
+
                 tile.setType(TileType::Filled);
                 tile.setColor(sf::Color::Blue);
                 tile.setPosition(x, y);
-               
-                
             }
             else if (tile.getType() == TileType::Temp) {
                 tile.setType(TileType::Empty);
@@ -35,8 +35,8 @@ void AreaCloser::fillArea(const std::vector<sf::Vector2f>& path, const std::vect
 	}
 }
 
-void AreaCloser::floodFill(sf::Vector2f inerPos) {
-    sf::Vector2i gridPos(m_gridMannager.getPosOnGrid(inerPos));
+void AreaCloser::floodFill(sf::Vector2f innerPos) {
+    sf::Vector2i gridPos(m_gridMannager.getPosOnGrid(innerPos));
     int startRow = gridPos.y;
     int startCol = gridPos.x;
 

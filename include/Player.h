@@ -29,7 +29,6 @@ private:
 	sf::Vector2f m_startPosition;
 	sf::Vector2f m_oldPosition;
 	
-
 	Trail m_trail;
 
 	Board* m_board = nullptr;
