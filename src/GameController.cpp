@@ -5,8 +5,11 @@
 #include "../include/GameController.h"
 #include "iostream"
 
-GameController::GameController() 
-	:m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Xonix"), m_hud((sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)))
+GameController::GameController() : m_fileParser("game_data.txt"),
+								   m_gameData(m_fileParser.parseGameData()),
+								   m_levels(m_fileParser.parseLevelData()),
+								   m_window(sf::VideoMode(m_gameData.screenSize.x * CELL_SIZE, m_gameData.screenSize.y * CELL_SIZE), "Xonix"),
+								   m_hud((sf::Vector2f(m_gameData.screenSize.x, m_gameData.screenSize.y)))
 {
 }
 
@@ -17,8 +20,7 @@ void GameController::run()
 		handleEvents();
 		update();
 		renderGame();
-	}
-	
+	}	
 }
 void GameController::handleEvents()
 {

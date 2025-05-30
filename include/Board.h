@@ -34,7 +34,6 @@ private:
 	Player m_player;
 	GridManager m_gridManager;
 	AreaCloser m_areaCloser;
-
 	sf::Clock m_clock;
 	float m_countDownTime = 180.f;
 };

@@ -9,10 +9,8 @@ GameData FileParser::parseGameData()
 	GameData data;
 	std::string line;
 	std::getline(m_file, line);
-
 	std::istringstream iss(line);
 	iss >> data.screenSize.x >> data.screenSize.y >> data.numOfLives;
-	std::cout << data.screenSize.x;
 	return data;
 }
 

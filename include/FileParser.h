@@ -1,5 +1,4 @@
 // Created by Adam Simonov and Benny Beer, 2025
-// TODO(adam): implement FileParser::readFile and handle invalid input
 #pragma once
 #include<string>
 #include<SFML/System/Vector2.hpp>
@@ -9,6 +8,7 @@
 #include <stdexcept>
 #include "Enemy.h"
 #include "Exception.h"
+#include <iostream>
 
 //---structs---
 struct LevelData{
@@ -30,7 +30,7 @@ private:
 	std::ifstream m_file;
 public:
 	FileParser(const std::string& path) : m_file(path){
-		if (!m_file.is_open()) { throw FileNotFound(path);}
+		if (!m_file.is_open())  throw FileNotFound(path);
 	}
 	GameData parseGameData();
 	std::vector<LevelData> parseLevelData();

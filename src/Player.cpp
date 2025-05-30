@@ -47,8 +47,6 @@ void Player::update(sf::Time deltaTime)
 		m_trail.addPoint(m_position);
 		//std::cout << "Player is walking on water" << std::endl;
 	}
-	
-
 
 }
 
