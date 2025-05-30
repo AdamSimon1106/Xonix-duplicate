@@ -4,11 +4,13 @@
 Board::Board()
 	: m_player(sf::Vector2f(0, 0), 3, *this), m_gridManager(COLS, ROWS), m_areaCloser(m_gridManager)
 {
+	int cols = m_gridManager.getWidth();
+	int rows = m_gridManager.getHeight();
 	for (int i = 0; i < ENEMY_COUNT; ++i)
 	{
 		// Initialize enemies with random positions
-		int x = std::rand() % COLS;
-		int y = std::rand() % ROWS;
+		int x = std::rand() % (cols - 2);
+		int y = std::rand() % (rows - 2);
 		sf::Vector2f enemyPosition(x * CELL_SIZE, y * CELL_SIZE);
 		m_enemies.emplace_back(enemyPosition, *this);
 	}
