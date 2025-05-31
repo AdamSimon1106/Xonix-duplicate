@@ -4,8 +4,8 @@
 #include <iostream>
 #include "Board.h"
 
-Player::Player(sf::Vector2f pos, int lives, const Board& board, sf::Color color)
-	:MovingObject(pos, color), m_lives(lives), m_startPosition(pos), m_board(const_cast<Board*>(&board))
+Player::Player(sf::Vector2f pos, int lives, const Board& board, int score, sf::Color color)
+	:MovingObject(pos, color), m_lives(lives), m_startPosition(pos), m_board(const_cast<Board*>(&board)), m_score(score)
 {
 	m_shape.setOrigin(0, 0);
 }

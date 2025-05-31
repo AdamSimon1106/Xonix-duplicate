@@ -1,8 +1,9 @@
 #include "WelcomeState.h"
 #include "GameController.h"
+#include "InGameState.h"
 #include <iostream>
 #include <Exception>
-WelcomeState::WelcomeState(sf::RenderWindow& window, GameController& controller) : IGameState(window), m_controller(controller)
+WelcomeState::WelcomeState(sf::RenderWindow& window, GameController& controller) : IGameState(window, controller)
 {
 	//background image
 	if (!m_bgTexture.loadFromFile("welcome_bg.png")) {
@@ -36,7 +37,7 @@ void WelcomeState::handleEvents(sf::Event& ev)
 			m_playButton.setFillColor(sf::Color::White);
 			if (ev.type == sf::Event::MouseButtonReleased && ev.mouseButton.button == sf::Mouse::Left)
 			{
-				//if (m_playButton.getGlobalBounds().contains(mousePos)) m_controller.switchState(std::make_unique<inGameState>(m_window, m_controller));
+				if (m_playButton.getGlobalBounds().contains(mousePos)) m_switchState = true;	
 			}
 		}
 }
@@ -45,6 +46,9 @@ void WelcomeState::update(sf::Time deltaTime)
 	sf::Vector2f mousePos = m_window.mapPixelToCoords(sf::Mouse::getPosition(m_window));
 	if (m_playButton.getGlobalBounds().contains(mousePos))	m_playButton.setFillColor(sf::Color::White);
 	else m_playButton.setFillColor(sf::Color::Black);
+	if (m_switchState) {
+		m_controller.switchState(std::make_unique<InGameState>(m_window, m_controller,0,0));
+	}
 }
 void WelcomeState::render()
 {

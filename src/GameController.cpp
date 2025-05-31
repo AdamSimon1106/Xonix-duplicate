@@ -5,13 +5,12 @@
 #include "../include/GameController.h"
 #include "iostream"
 #include "WelcomeState.h"
+#include <exception>
 
 GameController::GameController() : m_fileParser("game_data.txt"),
 								   m_gameData(m_fileParser.parseGameData()),
 								   m_levels(m_fileParser.parseLevelData()),
 								   m_window(sf::VideoMode(m_gameData.screenSize.x * CELL_SIZE, m_gameData.screenSize.y * CELL_SIZE), "Xonix"),
-								   m_hud((sf::Vector2f(m_gameData.screenSize.x, m_gameData.screenSize.y))),
-								   m_board(m_gameData,m_levels[0]),
 								   m_currentState(std::make_unique<WelcomeState>(m_window, *this))
 {
 }
@@ -34,35 +33,26 @@ void GameController::run()
 		m_currentState->render();
 		m_window.display();
 
+		if (m_nextState) {
+			m_currentState = std::move(m_nextState);
+		}
+
 	}	
-}
-
-void GameController::update()
-{
-	//would send the deltaTime to state
-	sf::Time deltaTime = m_clock.restart();
-	m_board.update(deltaTime);
-
-	HUDdata barData = {
-		m_board.getScore(),
-		m_board.getLives(),
-		m_board.getTime(),
-		m_board.getPercentageFilled(),
-	};
-	m_hud.update(barData);
-}
-
-void GameController::renderGame()
-{
-	m_window.clear();
-	m_board.draw(m_window);
-	m_hud.draw(m_window);
-	m_window.display();
 }
 
 void GameController::switchState(std::unique_ptr<IGameState> state)
 {
-	m_currentState = std::move(state);
+	m_nextState = std::move(state);
+}
+
+std::vector<LevelData> GameController::getLevels() const
+{
+	return m_levels;
+}
+
+GameData GameController::getGameData() const
+{
+	return m_gameData;
 }
 
 

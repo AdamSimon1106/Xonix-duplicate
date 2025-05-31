@@ -1,17 +1,19 @@
 #include "Board.h"
 #include <iostream>
 
-Board::Board(GameData gameData, LevelData level) : m_gameData(gameData),
+Board::Board(GameData gameData, LevelData level, int score) : m_gameData(gameData),
 												   m_level(level),
-									               m_player(sf::Vector2f(0, 0), m_gameData.numOfLives, *this),
+												   m_currScore(score),
+									               m_player(sf::Vector2f(0, 0), m_gameData.numOfLives, *this, m_currScore),
 									               m_gridManager(m_gameData.screenSize.x, m_gameData.screenSize.y),
 									               m_areaCloser(m_gridManager)
+						   
 {
 	int cols = m_gridManager.getWidth();
 	int rows = m_gridManager.getHeight();
 
 	//TODO - generate the enemies at fileParser
-	for (int i = 0; i < ENEMY_COUNT; ++i)
+	for (int i = 0; i < level.numOfEnemies; ++i)
 	{
 		// Initialize enemies with random positions
 		int x = 1 + std::rand() % (cols - 2); 

@@ -11,6 +11,7 @@ struct HUDdata {
     int live;
     float timer;
     float percentage;
+    int level;
 };
 
 class HUD {
@@ -26,6 +27,7 @@ private:
     sf::Text m_livesText;
     sf::Text m_timerText;
     sf::Text m_areaText;
+    sf::Text m_levelText;
 
     sf::RectangleShape m_border;
 };

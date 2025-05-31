@@ -18,12 +18,14 @@ HUD::HUD(sf::Vector2f screenSize)
     setupText(m_livesText, screenSize.x / 8 + 130);
     setupText(m_timerText, screenSize.x / 8 + 260);
     setupText(m_areaText, screenSize.x / 8 + 410);
+    setupText(m_levelText, screenSize.x / 8 + 540);
 
 }
 
 void HUD::update(const HUDdata& data) {
     m_scoreText.setString("Score: " + std::to_string(data.score));
     m_livesText.setString("Lives: " + std::to_string(data.live));
+    m_levelText.setString("Level: " + std::to_string(data.level));
 
     int totalSeconds = static_cast<int>(data.timer);
     int minutes = totalSeconds / 60;
@@ -43,5 +45,6 @@ void HUD::draw(sf::RenderWindow& window) {
     window.draw(m_livesText);
     window.draw(m_timerText);
     window.draw(m_areaText);
+    window.draw(m_levelText);
 }
 

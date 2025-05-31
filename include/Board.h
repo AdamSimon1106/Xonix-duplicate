@@ -13,7 +13,7 @@ class Player; // Forward declaration of Player class
 
 class Board {
 public:
-	Board(GameData gameData, LevelData level);
+	Board(GameData gameData, LevelData level, int score);
 	void update(sf::Time deltaTime);
 	void draw(sf::RenderWindow& window);
 
@@ -37,9 +37,11 @@ private:
 	GameData m_gameData;
 	LevelData m_level;
 	std::vector<Enemy> m_enemies;
+	int m_currScore;
 	Player m_player;
 	GridManager m_gridManager;
 	AreaCloser m_areaCloser;
 	sf::Clock m_clock;
 	float m_countDownTime = 180.f;
+	
 };
