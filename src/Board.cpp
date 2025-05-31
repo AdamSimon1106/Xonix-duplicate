@@ -31,7 +31,7 @@ void Board::update(sf::Time deltaTime)
 	m_player.update(deltaTime);
 	for (auto& enemy : m_enemies)
 	{
-		//enemy.update(deltaTime);
+		enemy.update(deltaTime);
 	}
 	checkColisions();
 }

@@ -36,7 +36,6 @@ void InGameState::update(sf::Time deltaTime)
 		if (m_currLevel < m_levels.size() - 1)
 		{
 			//im not on the final level
-			
 			m_controller.switchState(std::make_unique<InGameState>(m_window, m_controller, ++m_currLevel, m_score));
 		}
 		else m_controller.switchState(std::make_unique<WinState>(m_window, m_controller, m_score));
