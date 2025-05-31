@@ -9,12 +9,14 @@ Board::Board(GameData gameData, LevelData level) : m_gameData(gameData),
 {
 	int cols = m_gridManager.getWidth();
 	int rows = m_gridManager.getHeight();
+
 	//TODO - generate the enemies at fileParser
 	for (int i = 0; i < ENEMY_COUNT; ++i)
 	{
 		// Initialize enemies with random positions
-		int x = std::rand() % (cols - 2);
-		int y = std::rand() % (rows - 2);
+		int x = 1 + std::rand() % (cols - 2); 
+		int y = 1 + std::rand() % (rows - 2);
+		
 		sf::Vector2f enemyPosition(x * CELL_SIZE, y * CELL_SIZE);
 		m_enemies.emplace_back(enemyPosition, *this);
 	}
@@ -44,7 +46,7 @@ void Board::draw(sf::RenderWindow& window)
 
 bool Board::isOnFilledTile(sf::Vector2i point) const
 {
-	if (point.x < 0 || point.x >= m_width || point.y < 0 || point.y >= m_height)
+	if (point.x < 0 || point.x >= getGridWidth() || point.y < 0 || point.y >= getGridHeight())
 		return false; // Out of bounds check
 	return m_gridManager.isOnFilledTile(point);
 }
@@ -96,22 +98,22 @@ int Board::getLives() const
 
 int Board::getScreenWidth() const
 {
-	return m_width * CELL_SIZE;
+	return m_gameData.screenSize.x * CELL_SIZE;
 }
 
 int Board::getScreenHeight() const
 {
-	return m_height * CELL_SIZE;
+	return m_gameData.screenSize.y * CELL_SIZE;
 }
 
 int Board::getGridWidth() const
 {
-	return m_width;
+	return m_gameData.screenSize.x;
 }
 
 int Board::getGridHeight() const
 {
-	return m_height;
+	return m_gameData.screenSize.y;
 }
 
 float Board::getPercentageFilled() const

@@ -12,6 +12,7 @@ GameController::GameController() : m_fileParser("game_data.txt"),
 								   m_hud((sf::Vector2f(m_gameData.screenSize.x, m_gameData.screenSize.y))),
 								   m_board(m_gameData,m_levels[0])
 {
+	std::cout << "FROM GAMECONTROLLER: x - " << m_gameData.screenSize.x << " y - " << m_gameData.screenSize.y << " \n";
 }
 
 void GameController::run()

@@ -1,1 +1,1 @@
-﻿#configure_file ("Wall.png" ${CMAKE_BINARY_DIR} COPYONLY)
+﻿configure_file ("game_data.txt" ${CMAKE_BINARY_DIR} COPYONLY)

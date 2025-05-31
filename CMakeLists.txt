@@ -22,8 +22,15 @@ add_executable (${CMAKE_PROJECT_NAME}
         include/Tile.h
         src/Tile.cpp)
 
-        # Copy the entire resources/ folder into the build directory
-file(COPY resources DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
+file(GLOB_RECURSE RESOURCE_FILES "${CMAKE_SOURCE_DIR}/resources/*")
+
+foreach(resource ${RESOURCE_FILES})
+    get_filename_component(filename ${resource} NAME)
+    add_custom_command(TARGET oop2_ex04 POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        ${resource} $<TARGET_FILE_DIR:oop2_ex04>/resources/${filename})
+endforeach()
 
 target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE $<$<CONFIG:DEBUG>:-fsanitize=address>)
 if (NOT MSVC)
@@ -50,4 +57,3 @@ target_link_libraries (${CMAKE_PROJECT_NAME} sfml-graphics)
 #target_link_libraries (${CMAKE_PROJECT_NAME} sfml-graphics sfml-main)
 
 include (cmake/SFML.cmake)
-

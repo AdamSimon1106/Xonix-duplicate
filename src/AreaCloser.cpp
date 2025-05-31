@@ -13,11 +13,11 @@ void AreaCloser::fillArea(const std::vector<sf::Vector2f>& path, const std::vect
 	setTrailOnGrid(path);
 	for (const auto& enemy : enemies)
 	{
-        std::cout << enemy.getPosition().x << " " << enemy.getPosition().y << "/n";
 		floodFill(enemy.getPosition());
 	}
 	for (int y = 0; y < m_gridMannager.getHeight(); ++y) {
 		for (int x = 0; x < m_gridMannager.getWidth(); ++x) {
+
 			Tile& tile = m_gridMannager(sf::Vector2i(x, y));
             if (tile.getType() != TileType::Temp) {
                 if (tile.getType() != TileType::Filled)
@@ -37,6 +37,7 @@ void AreaCloser::fillArea(const std::vector<sf::Vector2f>& path, const std::vect
 
 void AreaCloser::floodFill(sf::Vector2f innerPos) {
     sf::Vector2i gridPos(m_gridMannager.getPosOnGrid(innerPos));
+
     int startRow = gridPos.y;
     int startCol = gridPos.x;
 
@@ -49,6 +50,7 @@ void AreaCloser::floodFill(sf::Vector2f innerPos) {
     q.push({ startCol, startRow });
 
     while (!q.empty()) {
+
         auto [row, col] = q.front(); 
         q.pop();
 
@@ -64,8 +66,10 @@ void AreaCloser::floodFill(sf::Vector2f innerPos) {
         for (int dir = 0; dir < 4; ++dir) {
             int newRow = row + dr[dir];
             int newCol = col + dc[dir];
-
-            if (!m_gridMannager.isInGrid(sf::Vector2i(newCol, newRow))) continue;
+            
+            //this is the problem row |
+            
+            if (!m_gridMannager.isInGrid(sf::Vector2i(newRow, newCol))) continue;
 
             Tile& neighbor = m_gridMannager(sf::Vector2i(newRow, newCol));
 

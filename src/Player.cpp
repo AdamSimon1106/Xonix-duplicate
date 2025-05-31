@@ -27,7 +27,6 @@ void Player::update(sf::Time deltaTime)
 	bool isMoving = (m_direction.x != 0 || m_direction.y != 0);
 	bool onFilledTile = m_board->isOnFilledTile(GetPosOnGrid(m_position));
 	bool wasOnFilledTile = m_board->isOnFilledTile(GetPosOnGrid(m_oldPosition));
-	
 	//walking on water from filled
 	if (!onFilledTile && wasOnFilledTile)
 	{
