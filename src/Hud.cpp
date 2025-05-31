@@ -10,7 +10,8 @@ HUD::HUD(sf::Vector2f screenSize)
         text.setFont(m_font);
         text.setCharacterSize(24);
         text.setFillColor(sf::Color::White);
-        text.setPosition(x, 10);
+        text.setPosition(x,
+            10);
         };
 
     setupText(m_scoreText, screenSize.x/8);
